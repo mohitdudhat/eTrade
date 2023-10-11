@@ -21,7 +21,7 @@ export const Banner = () => {
                   <h1 className="title">Roco Wireless Headphone</h1>
                   <div className="slide-action">
                     <div className="shop-btn">
-                      <Link href="shop.html" className="axil-btn btn-bg-white">
+                      <Link to="shop.html" className="axil-btn btn-bg-white">
                         <i className="fal fa-shopping-cart"></i>Shop Now
                       </Link>
                     </div>
@@ -76,7 +76,7 @@ export const Banner = () => {
                   <h1 className="title">Smart Digital Watch</h1>
                   <div className="slide-action">
                     <div className="shop-btn">
-                      <Link href="shop.html" className="axil-btn btn-bg-white">
+                      <Link to="shop.html" className="axil-btn btn-bg-white">
                         <i className="fal fa-shopping-cart"></i>Shop Now
                       </Link>
                     </div>
@@ -131,7 +131,7 @@ export const Banner = () => {
                   <h1 className="title">Roco Wireless Headphone</h1>
                   <div className="slide-action">
                     <div className="shop-btn">
-                      <Link href="shop.html" className="axil-btn btn-bg-white">
+                      <Link to="shop.html" className="axil-btn btn-bg-white">
                         <i className="fal fa-shopping-cart"></i>Shop Now
                       </Link>
                     </div>
@@ -186,7 +186,7 @@ export const Banner = () => {
                   <h1 className="title">Smart Digital Watch</h1>
                   <div className="slide-action">
                     <div className="shop-btn">
-                      <Link href="shop.html" className="axil-btn btn-bg-white">
+                      <Link to="shop.html" className="axil-btn btn-bg-white">
                         <i className="fal fa-shopping-cart"></i>Shop Now
                       </Link>
                     </div>

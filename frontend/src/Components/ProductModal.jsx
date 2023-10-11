@@ -6,7 +6,7 @@ export const ProductModal = () => {
     <div
       className="modal fade quick-view-product"
       id="quick-view-modal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-hidden="true"
     >
       <div className="modal-dialog modal-dialog-centered">
@@ -181,7 +181,7 @@ export const ProductModal = () => {
 
                       <div className="product-action-wrapper d-flex-center">
                         <div className="pro-qty">
-                          <input type="text" value="1" />
+                          <input type="text" defaultValue="1" />
                         </div>
 
                         <ul className="product-action d-flex-center mb--0">

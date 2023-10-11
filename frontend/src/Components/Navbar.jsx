@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+//import usecallback
+
 export const Navbar = () => {
+  // eslint-disable-next-line
+  const onClick = (e) => {
+    // Handle the click action here
+    console.log("Search icon clicked");
+  };
+
+  const handleSearchClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      onClick(e); // Call the onClick function
+    },
+    [onClick]
+  );
+
+  // Use an event handler to handle the click
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    // Handle the click action here
+    console.log("Link clicked");
+  };
   return (
     <div>
       <Link to="#top" className="back-to-top" id="backto-top">
@@ -284,7 +306,7 @@ export const Navbar = () => {
                 <ul className="action-list">
                   <li className="axil-search">
                     <Link
-                      to="javascript:void(0)"
+                      onClick={handleSearchClick}
                       className="header-search-icon"
                       title="Search"
                     >
@@ -303,7 +325,7 @@ export const Navbar = () => {
                     </Link>
                   </li>
                   <li className="my-account">
-                    <Link to="javascript:void(0)">
+                    <Link to="/" onClick={handleLinkClick}>
                       <i className="flaticon-person"></i>
                     </Link>
                     <div className="my-account-dropdown">

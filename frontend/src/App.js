@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./Components/Navbar";
-import { Banner } from "./Components/Banner";
+import { Banner } from "./Components/Banner"; // Import with the correct path
+
 import { Category } from "./Components/Category";
 import { Poster } from "./Components/Poster";
 import { Product } from "./Components/Product";
@@ -40,10 +41,10 @@ function App() {
                 <NewLetter />
                 <Service />
                 <Footer />
-                <ProductModal />
+                {/*<ProductModal />
                 <SearchModal />
                 <Cart />
-                <OfferModal />
+                <OfferModal /> */}
               </>
             }
           />

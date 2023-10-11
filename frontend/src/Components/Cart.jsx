@@ -42,7 +42,11 @@ export const Cart = () => {
                   <span className="currency-symbol">$</span>155.00
                 </div>
                 <div className="pro-qty item-quantity">
-                  <input type="number" className="quantity-input" value="15" />
+                  <input
+                    type="number"
+                    className="quantity-input"
+                    defaultValue="15"
+                  />
                 </div>
               </div>
             </li>
@@ -76,7 +80,11 @@ export const Cart = () => {
                   <span className="currency-symbol">$</span>255.00
                 </div>
                 <div className="pro-qty item-quantity">
-                  <input type="number" className="quantity-input" value="5" />
+                  <input
+                    type="number"
+                    className="quantity-input"
+                    defaultValue="5"
+                  />
                 </div>
               </div>
             </li>
@@ -110,7 +118,11 @@ export const Cart = () => {
                   <span className="currency-symbol">$</span>200.00
                 </div>
                 <div className="pro-qty item-quantity">
-                  <input type="number" className="quantity-input" value="100" />
+                  <input
+                    type="number"
+                    className="quantity-input"
+                    defaultValue="100"
+                  />
                 </div>
               </div>
             </li>
