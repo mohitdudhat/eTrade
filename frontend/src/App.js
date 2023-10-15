@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Navbar } from "./Components/Navbar";
-import { Banner } from "./Components/Banner"; // Import with the correct path
-
+import { Banner } from "./Components/Banner";
 import { Category } from "./Components/Category";
 import { Poster } from "./Components/Poster";
 import { Product } from "./Components/Product";
@@ -26,9 +24,8 @@ import { SingleProduct } from "./Components/SingleProduct";
 import { YourCart } from "./Components/YourCart";
 import { YourWishList } from "./Components/YourWishList";
 import { Checkout } from "./Components/CheckOut";
-import { SigninHeader } from "./Components/SigninHeader";
+import { AuthHeader } from "./Components/AuthHeader";
 import { SigninForm } from "./Components/SigninForm.";
-import { ForgotPasswordHeader } from "./Components/ForgotPasswordHeader";
 import { ForgotPasswordForm } from "./Components/ForgotPasswordForm";
 import { SignupForm } from "./Components/Signup";
 import { ResetForm } from "./Components/ResetForm";
@@ -40,8 +37,35 @@ import { Team } from "./Components/Team";
 import { AboutFeatures } from "./Components/AboutFeatures";
 import { ContactForm } from "./Components/ContactForm";
 import { Recents } from "./Components/Recents";
+import { useEffect, useState } from "react";
+import $ from "jquery";
+import "slick-carousel"; // Import the Slider component from react-slick
+import sal from "sal.js";
 
 function App() {
+  const [number, setNumber] = useState(0);
+
+  // useEffect(() => {
+  //   // Function to reload the page and count reloads
+  //   const reloadPage = () => {
+  //     if (number < 3) {
+  //       window.location.reload();
+  //       // Increment the reload count by updating the state
+  //       setNumber((prevNumber) => prevNumber + 1);
+  //     } else {
+  //       // Stop reloading after three times
+  //       clearInterval(reloadInterval);
+  //     }
+  //   };
+
+  //   // Reload the page every 2 seconds
+  //   const reloadInterval = setInterval(reloadPage, 2000);
+
+  //   // Clean up the interval when the component is unmounted
+  //   return () => {
+  //     clearInterval(reloadInterval);
+  //   };
+  // }, [number]);
   return (
     <div>
       <BrowserRouter>
@@ -50,7 +74,7 @@ function App() {
             path="/"
             element={
               <>
-                <Navbar />
+                <Header TopCampaign={true} style={1} />
                 <Banner />
                 <Category />
                 <Poster />
@@ -130,60 +154,42 @@ function App() {
               </>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/sign-in.html"
             element={
               <>
-                <SigninHeader
-                  message="Not a member?"
-                  messageButton="Sign Up Now"
-                  url="/sign-up.html"
-                />
+                <AuthHeader page="sign-in" />
                 <SigninForm />
               </>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/sign-up.html"
             element={
               <>
-                <SigninHeader
-                  message="Already a member?"
-                  messageButton="Sign In"
-                  url="/sign-in.html"
-                />
+                <AuthHeader />
                 <SignupForm />
               </>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/reset-password.html"
             element={
               <div className="axil-signin-area">
-                <ForgotPasswordHeader />
+                <AuthHeader />
                 <ResetForm />
               </div>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/forgot-password.html"
             element={
               <div className="axil-signin-area">
-                <ForgotPasswordHeader />
+                <AuthHeader />
                 <ForgotPasswordForm />
               </div>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/privacy-policy.html"
             element={
@@ -196,8 +202,6 @@ function App() {
               </div>
             }
           />
-        </Routes>
-        <Routes>
           <Route
             path="/error-page.html"
             element={
@@ -209,28 +213,8 @@ function App() {
               </div>
             }
           />
-        </Routes>
-        <Routes>
           <Route
-            path="/my-account.html"
-            element={
-              <div>
-                <Header />
-                <Breadcrumb
-                  currentLocation="My Account"
-                  Title="Explore All Products"
-                />
-                <MyAccount />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-        </Routes>
-        <Routes>
-          <Route
-            path="/about.html"
+            path="/about-us.html"
             element={
               <div>
                 <Header />
@@ -247,8 +231,22 @@ function App() {
               </div>
             }
           />
-        </Routes>
-        <Routes>
+          <Route
+            path="/my-account.html"
+            element={
+              <div>
+                <Header />
+                <Breadcrumb
+                  currentLocation="My Account"
+                  Title="Explore All Products"
+                />
+                <MyAccount />
+                <NewLetter />
+                <Service />
+                <Footer />
+              </div>
+            }
+          />
           <Route
             path="/contact.html"
             element={
@@ -267,5 +265,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -22,7 +22,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-4.png"
+                  src="/assets/images/product/categories/elec-4.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Phones</h6>
@@ -39,7 +39,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-5.png"
+                  src="/assets/images/product/categories/elec-5.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Computers</h6>
@@ -56,7 +56,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-11.png"
+                  src="/assets/images/product/categories/elec-11.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Accessories</h6>
@@ -73,7 +73,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-6.png"
+                  src="/assets/images/product/categories/elec-6.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Laptops</h6>
@@ -90,7 +90,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-2.png"
+                  src="/assets/images/product/categories/elec-2.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Monitors</h6>
@@ -107,7 +107,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-7.png"
+                  src="/assets/images/product/categories/elec-7.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Networking</h6>
@@ -124,7 +124,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-8.png"
+                  src="/assets/images/product/categories/elec-8.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">PC Gaming</h6>
@@ -136,7 +136,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-1.png"
+                  src="/assets/images/product/categories/elec-1.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Smartwatches</h6>
@@ -148,7 +148,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-9.png"
+                  src="/assets/images/product/categories/elec-9.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Headphones</h6>
@@ -160,7 +160,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-10.png"
+                  src="/assets/images/product/categories/elec-10.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Camera & Photo</h6>
@@ -172,7 +172,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-8.png"
+                  src="/assets/images/product/categories/elec-8.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Video Games</h6>
@@ -184,7 +184,7 @@ export const Category = () => {
               <Link to="/">
                 <img
                   className="img-fluid"
-                  src="assets/images/product/categories/elec-1.png"
+                  src="/assets/images/product/categories/elec-1.png"
                   alt="product categorie"
                 />
                 <h6 className="cat-title">Sports</h6>
