@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { useState } from "react";
 import Slider from "react-slick";
 import Sal from "sal.js";
 import "sal.js/dist/sal.css";
@@ -6,11 +7,6 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 
 export const Banner = () => {
-  useEffect(() => {
-    // Initialize Sal.js for animations
-    Sal();
-  }, []);
-
   // Create an array of product items with author information
   const productItems = [
     {
@@ -60,7 +56,9 @@ export const Banner = () => {
     // Add more items as needed
   ];
 
-  // Slick settings for the carousel
+  const [sliderContent, setSliderContent] = useState(null);
+  const [sliderThumb, setSliderThumb] = useState(null);
+
   const slickSettings = {
     centerMode: true,
     arrows: false,
@@ -69,15 +67,25 @@ export const Banner = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    asNavFor: ".slider-thumb-activation-one axil-slick-dots",
+    asNavFor: sliderContent, // Use the state variable
   };
 
-  $(".slider-thumb-activation-one axil-slick-dots").slick(slickSettings);
-  $(".slider-content-activation-one").slick({
-    ...slickSettings,
-    dots: false,
-    asNavFor: ".slider-content-activation-one",
-  });
+  useEffect(() => {
+    Sal();
+    if (sliderThumb && sliderContent) {
+      sliderThumb.slick(slickSettings);
+      sliderContent.slick({
+        centerMode: true,
+        arrows: false,
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        asNavFor: sliderThumb,
+      });
+    }
+  }, [sliderThumb, sliderContent]);
 
   return (
     <div className="axil-main-slider-area main-slider-style-1">

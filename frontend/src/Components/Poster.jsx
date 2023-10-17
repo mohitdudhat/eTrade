@@ -27,12 +27,13 @@ export const Poster = () => {
                   src="assets/images/product/poster/poster-03.png"
                   alt="Poster Product"
                 />
-                <div className="music-singnal">
-                  <div className="item-circle circle-1"></div>
-                  <div className="item-circle circle-2"></div>
-                  <div className="item-circle circle-3"></div>
-                  <div className="item-circle circle-4"></div>
-                  <div className="item-circle circle-5"></div>
+                <div className="music-signal">
+                  {[1, 2, 3, 4, 5].map((circle) => (
+                    <div
+                      key={circle}
+                      className={`item-circle circle-${circle}`}
+                    ></div>
+                  ))}
                 </div>
               </div>
             </div>

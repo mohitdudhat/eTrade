@@ -3,7 +3,7 @@ import "./App.css";
 import { Banner } from "./Components/Banner";
 import { Category } from "./Components/Category";
 import { Poster } from "./Components/Poster";
-import { Product } from "./Components/Product";
+import { Explore } from "./Components/Explore";
 import { Testimonial } from "./Components/Testimonial";
 import { Arrival } from "./Components/Arrival";
 import { Tranding } from "./Components/Tranding";
@@ -43,29 +43,6 @@ import "slick-carousel"; // Import the Slider component from react-slick
 import sal from "sal.js";
 
 function App() {
-  const [number, setNumber] = useState(0);
-
-  // useEffect(() => {
-  //   // Function to reload the page and count reloads
-  //   const reloadPage = () => {
-  //     if (number < 3) {
-  //       window.location.reload();
-  //       // Increment the reload count by updating the state
-  //       setNumber((prevNumber) => prevNumber + 1);
-  //     } else {
-  //       // Stop reloading after three times
-  //       clearInterval(reloadInterval);
-  //     }
-  //   };
-
-  //   // Reload the page every 2 seconds
-  //   const reloadInterval = setInterval(reloadPage, 2000);
-
-  //   // Clean up the interval when the component is unmounted
-  //   return () => {
-  //     clearInterval(reloadInterval);
-  //   };
-  // }, [number]);
   return (
     <div>
       <BrowserRouter>
@@ -78,7 +55,7 @@ function App() {
                 <Banner />
                 <Category />
                 <Poster />
-                <Product />
+                <Explore />
                 <Testimonial />
                 <Arrival />
                 <Tranding />

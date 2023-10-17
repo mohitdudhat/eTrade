@@ -31,7 +31,7 @@ export const NavbarMenu = () => {
                     <Link to="/#">Home</Link>
                   </li>
                   <li>
-                    <Link to="/#">Shop</Link>
+                    <Link to="/shop.html">Shop</Link>
                   </li>
                   <li className="menu-item-has-children">
                     <Link to="/#">Categories</Link>
