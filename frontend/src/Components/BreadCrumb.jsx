@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Breadcrumb = (props) => {
+const Breadcrumb = ({ currentLocation, Title }) => {
   return (
     <div className="axil-breadcrumb-area">
       <div className="container">
@@ -13,10 +13,10 @@ export const Breadcrumb = (props) => {
                 </li>
                 <li className="separator"></li>
                 <li className="axil-breadcrumb-item active" aria-current="page">
-                  {props.currentLocation}
+                  {currentLocation}
                 </li>
               </ul>
-              <h1 className="title"> {props.Title}</h1>
+              <h1 className="title"> {Title}</h1>
             </div>
           </div>
           <div className="col-lg-6 col-md-4">
@@ -31,3 +31,5 @@ export const Breadcrumb = (props) => {
     </div>
   );
 };
+
+export default React.memo(Breadcrumb);

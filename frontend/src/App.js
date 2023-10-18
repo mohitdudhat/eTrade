@@ -6,7 +6,7 @@ import { Poster } from "./Components/Poster";
 import { Explore } from "./Components/Explore";
 import { Testimonial } from "./Components/Testimonial";
 import { Arrival } from "./Components/Arrival";
-import { Tranding } from "./Components/Tranding";
+import { Trending } from "./Components/Trending";
 import { Axil } from "./Components/Axil";
 import { NewLetter } from "./Components/NewLetter";
 import { Footer } from "./Components/Footer";
@@ -18,7 +18,7 @@ import { OfferModal } from "./Components/OfferModal";
 import { WhyChoose } from "./Components/WhyChoose";
 import { OfferSlider } from "./Components/OfferSlider";
 import Header from "./Components/Header";
-import { Breadcrumb } from "./Components/BreadCrumb";
+import Breadcrumb from "./Components/BreadCrumb";
 import { ShopArea } from "./Components/ShopArea";
 import { SingleProduct } from "./Components/SingleProduct";
 import { YourCart } from "./Components/YourCart";
@@ -58,7 +58,7 @@ function App() {
                 <Explore />
                 <Testimonial />
                 <Arrival />
-                <Tranding />
+                <Trending />
                 <WhyChoose />
                 <Axil />
                 <NewLetter />
@@ -78,7 +78,6 @@ function App() {
                 />
                 <ShopArea />
                 <NewLetter />
-
                 <Service />
                 <Footer />
               </>

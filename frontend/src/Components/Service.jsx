@@ -1,54 +1,46 @@
 import React from "react";
 
+const serviceItems = [
+  {
+    iconSrc: "assets/images/icons/service1.png",
+    title: "Fast & Secure Delivery",
+    description: "Tell about your service.",
+  },
+  {
+    iconSrc: "assets/images/icons/service2.png",
+    title: "Money Back Guarantee",
+    description: "Within 10 days.",
+  },
+  {
+    iconSrc: "assets/images/icons/service3.png",
+    title: "24 Hour Return Policy",
+    description: "No question ask.",
+  },
+  {
+    iconSrc: "assets/images/icons/service4.png",
+    title: "Pro Quality Support",
+    description: "24/7 Live support.",
+  },
+];
+
 export const Service = () => {
   return (
     <div className="service-area">
       <div className="container">
         <div className="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-          <div className="col">
-            <div className="service-box service-style-2">
-              <div className="icon">
-                <img src="assets/images/icons/service1.png" alt="Service" />
-              </div>
-              <div className="content">
-                <h6 className="title">Fast &amp; Secure Delivery</h6>
-                <p>Tell about your service.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="service-box service-style-2">
-              <div className="icon">
-                <img src="assets/images/icons/service2.png" alt="Service" />
-              </div>
-              <div className="content">
-                <h6 className="title">Money Back Guarantee</h6>
-                <p>Within 10 days.</p>
+          {serviceItems.map((item, index) => (
+            <div className="col" key={index}>
+              <div className="service-box service-style-2">
+                <div className="icon">
+                  <img src={item.iconSrc} alt="Service" />
+                </div>
+                <div className="content">
+                  <h6 className="title">{item.title}</h6>
+                  <p>{item.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col">
-            <div className="service-box service-style-2">
-              <div className="icon">
-                <img src="assets/images/icons/service3.png" alt="Service" />
-              </div>
-              <div className="content">
-                <h6 className="title">24 Hour Return Policy</h6>
-                <p>No question ask.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="service-box service-style-2">
-              <div className="icon">
-                <img src="assets/images/icons/service4.png" alt="Service" />
-              </div>
-              <div className="content">
-                <h6 className="title">Pro Quality Support</h6>
-                <p>24/7 Live support.</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

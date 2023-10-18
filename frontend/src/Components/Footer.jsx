@@ -1,6 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const supportData = {
+  email: "example@domain.com",
+  phone: "(+01) 850-315-5862",
+};
+
+const accountLinks = [
+  { text: "My Account", link: "my-account.html" },
+  { text: "Login / Register", link: "sign-up.html" },
+  { text: "Cart", link: "cart.html" },
+  { text: "Wishlist", link: "wishlist.html" },
+  { text: "Shop", link: "shop.html" },
+];
+
+const quickLinks = [
+  { text: "Privacy Policy", link: "privacy-policy.html" },
+  { text: "Terms Of Use", link: "terms-of-service.html" },
+  { text: "FAQ", link: "/" },
+  { text: "Contact", link: "contact.html" },
+];
+
 export const Footer = () => {
   return (
     <footer className="axil-footer-area footer-style-2">
@@ -19,14 +39,14 @@ export const Footer = () => {
                   </p>
                   <ul className="support-list-item">
                     <li>
-                      <Link href="mailto:example@domain.com">
+                      <Link to={`mailto:${supportData.email}`}>
                         <i className="fal fa-envelope-open"></i>
-                        example@domain.com
+                        {supportData.email}
                       </Link>
                     </li>
                     <li>
-                      <Link href="tel:(+01)850-315-5862">
-                        <i className="fal fa-phone-alt"></i> (+01) 850-315-5862
+                      <Link to={`tel:${supportData.phone}`}>
+                        <i className="fal fa-phone-alt"></i> {supportData.phone}
                       </Link>
                     </li>
                   </ul>
@@ -38,21 +58,11 @@ export const Footer = () => {
                 <h5 className="widget-title">Account</h5>
                 <div className="inner">
                   <ul>
-                    <li>
-                      <Link href="my-account.html">My Account</Link>
-                    </li>
-                    <li>
-                      <Link href="sign-up.html">Login / Register</Link>
-                    </li>
-                    <li>
-                      <Link href="cart.html">Cart</Link>
-                    </li>
-                    <li>
-                      <Link href="wishlist.html">Wishlist</Link>
-                    </li>
-                    <li>
-                      <Link href="shop.html">Shop</Link>
-                    </li>
+                    {accountLinks.map((link, index) => (
+                      <li key={index}>
+                        <Link to={link.link}>{link.text}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -62,21 +72,11 @@ export const Footer = () => {
                 <h5 className="widget-title">Quick Link</h5>
                 <div className="inner">
                   <ul>
-                    <li>
-                      <Link href="privacy-policy.html">Privacy Policy</Link>
-                    </li>
-                    <li>
-                      <Link href="terms-of-service.html">Terms Of Use</Link>
-                    </li>
-                    <li>
-                      <Link to="/">FAQ</Link>
-                    </li>
-                    <li>
-                      <Link href="contact.html">Contact</Link>
-                    </li>
-                    <li>
-                      <Link href="contact.html">Contact</Link>
-                    </li>
+                    {quickLinks.map((link, index) => (
+                      <li key={index}>
+                        <Link to={link.link}>{link.text}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export const Footer = () => {
               <div className="copyright-left d-flex flex-wrap justify-content-center">
                 <ul className="quick-link">
                   <li>
-                    © 2023. All rights reserved by
+                    © 2023. All rights reserved by{" "}
                     <Link
                       target="_blank"
                       rel="noreferrer"
