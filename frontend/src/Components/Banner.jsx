@@ -60,32 +60,54 @@ export const Banner = () => {
   const [sliderThumb, setSliderThumb] = useState(null);
 
   const slickSettings = {
-    centerMode: true,
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
     arrows: false,
     dots: true,
+    focusOnSelect: false,
+    speed: 1000,
+    autoplay: false,
+    asNavFor: ".slider-content-activation-one",
+    prevArrow: (
+      <button className="slide-arrow prev-arrow">
+        <i className="fal fa-long-arrow-left"></i>
+      </button>
+    ),
+    nextArrow: (
+      <button className="slide-arrow next-arrow">
+        <i className="fal fa-long-arrow-right"></i>
+      </button>
+    ),
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  const slickSettings2 = {
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    asNavFor: sliderContent, // Use the state variable
+    arrows: false,
+    dots: false,
+    focusOnSelect: false,
+    speed: 500,
+    fade: true,
+    autoplay: false,
+    asNavFor: ".slider-thumb-activation-one",
   };
 
   useEffect(() => {
     Sal();
     if (sliderThumb && sliderContent) {
       sliderThumb.slick(slickSettings);
-      sliderContent.slick({
-        centerMode: true,
-        arrows: false,
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        asNavFor: sliderThumb,
-      });
+      sliderContent.slick(slickSettings2);
     }
-  }, [sliderThumb, sliderContent]);
+  }, []);
 
   return (
     <div className="axil-main-slider-area main-slider-style-1">
@@ -94,7 +116,10 @@ export const Banner = () => {
           <div className="col-lg-5 col-sm-6">
             <div className="main-slider-content">
               <div className="slider-content-activation-one">
-                <Slider {...slickSettings}>
+                <Slider
+                  ref={(slider) => setSliderContent(slider)}
+                  {...slickSettings2}
+                >
                   {productItems.map((item, index) => (
                     <div
                       key={index}
@@ -152,7 +177,7 @@ export const Banner = () => {
           <div className="col-lg-7 col-sm-6">
             <div className="main-slider-large-thumb">
               <div className="slider-thumb-activation-one axil-slick-dots">
-                <Slider {...slickSettings}>
+                <Slider ref={(slider) => setSliderThumb(slider)}{...slickSettings}>
                   {productItems.map((item, index) => (
                     <div
                       key={index}

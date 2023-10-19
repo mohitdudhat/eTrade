@@ -1,6 +1,28 @@
 import React from "react";
 
 export const MyAccount = () => {
+  // Create arrays for orders and addresses
+  const orders = [
+    {
+      orderNumber: "#6523",
+      orderDate: "September 10, 2020",
+      orderStatus: "Processing",
+      orderTotal: "$326.63 for 3 items",
+    },
+    // Add more orders as needed
+  ];
+
+  const addresses = [
+    {
+      type: "Shipping Address",
+      name: "Annie Mario",
+      email: "annie@example.com",
+      phone: "1234 567890",
+      address: "7398 Smoke Ranch Road\nLas Vegas, Nevada 89128",
+    },
+    // Add more addresses as needed
+  ];
+
   return (
     <div className="axil-dashboard-area axil-section-gap">
       <div className="container">
@@ -8,16 +30,11 @@ export const MyAccount = () => {
           <div className="axil-dashboard-author">
             <div className="media">
               <div className="thumbnail">
-                <img
-                  src="assets/images/product/author1.png"
-                  alt="Hello Annie"
-                />
+                <img src="assets/images/product/author1.png" alt="Hello Annie" />
               </div>
               <div className="media-body">
                 <h5 className="title mb-0">Hello Annie</h5>
-                <span className="joining-date">
-                  eTrade Member Since Sep 2020
-                </span>
+                <span className="joining-date">eTrade Member Since Sep 2020</span>
               </div>
             </div>
           </div>
@@ -71,8 +88,8 @@ export const MyAccount = () => {
                     >
                       <i className="fas fa-user"></i>Account Details
                     </a>
-                    <a href="sign-in.html">
-                      <i className="fal fa-sign-out"></i>Logout
+                    <a className="nav-item nav-link" href="sign-in.html">
+                      <i className="fal fa-sign-out"></i>{" "}Logout
                     </a>
                   </div>
                 </nav>
@@ -80,18 +97,14 @@ export const MyAccount = () => {
             </div>
             <div className="col-xl-9 col-md-8">
               <div className="tab-content">
-                <div
-                  className="tab-pane fade show active"
-                  id="nav-dashboard"
-                  role="tabpanel"
-                >
+                <div className="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
                   <div className="axil-dashboard-overview">
                     <div className="welcome-text">
                       Hello Annie (not <span>Annie?</span>{" "}
                       <a href="sign-in.html">Log Out</a>)
                     </div>
                     <p>
-                      From your account dashboard you can view your recent
+                      From your account dashboard, you can view your recent
                       orders, manage your shipping and billing addresses, and
                       edit your password and account details.
                     </p>
@@ -111,28 +124,25 @@ export const MyAccount = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">#6523</th>
-                            <td>September 10, 2020</td>
-                            <td>Processing</td>
-                            <td>$326.63 for 3 items</td>
-                            <td>
-                              <a href="#" className="axil-btn view-btn">
-                                View
-                              </a>
-                            </td>
-                          </tr>
-                          {/* Repeat the rows as needed */}
+                          {orders.map((order, index) => (
+                            <tr key={index}>
+                              <th scope="row">{order.orderNumber}</th>
+                              <td>{order.orderDate}</td>
+                              <td>{order.orderStatus}</td>
+                              <td>{order.orderTotal}</td>
+                              <td>
+                                <a href="#" className="axil-btn view-btn">
+                                  View
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-                <div
-                  className="tab-pane fade"
-                  id="nav-downloads"
-                  role="tabpanel"
-                >
+                <div className="tab-pane fade" id="nav-downloads" role="tabpanel">
                   <div className="axil-dashboard-order">
                     <p>You don't have any downloads</p>
                   </div>
@@ -144,44 +154,24 @@ export const MyAccount = () => {
                       by default.
                     </p>
                     <div className="row row--30">
-                      <div className="col-lg-6">
-                        <div className="address-info mb--40">
-                          <div className="addrss-header d-flex align-items-center justify-content-between">
-                            <h4 className="title mb-0">Shipping Address</h4>
-                            <a href="#" className="address-edit">
-                              <i className="far fa-edit"></i>
-                            </a>
+                      {addresses.map((address, index) => (
+                        <div className="col-lg-6" key={index}>
+                          <div className="address-info mb--40">
+                            <div className="addrss-header d-flex align-items-center justify-content-between">
+                              <h4 className="title mb-0">{address.type}</h4>
+                              <a href="#" className="address-edit">
+                                <i className="far fa-edit"></i>
+                              </a>
+                            </div>
+                            <ul className="address-details">
+                              <li>Name: {address.name}</li>
+                              <li>Email: {address.email}</li>
+                              <li>Phone: {address.phone}</li>
+                              <li className="mt--30">{address.address}</li>
+                            </ul>
                           </div>
-                          <ul className="address-details">
-                            <li>Name: Annie Mario</li>
-                            <li>Email: annie@example.com</li>
-                            <li>Phone: 1234 567890</li>
-                            <li className="mt--30">
-                              7398 Smoke Ranch Road <br />
-                              Las Vegas, Nevada 89128
-                            </li>
-                          </ul>
                         </div>
-                      </div>
-                      <div className="col-lg-6">
-                        <div className="address-info">
-                          <div className="addrss-header d-flex align-items-center justify-content-between">
-                            <h4 className="title mb-0">Billing Address</h4>
-                            <a href="#" className="address-edit">
-                              <i className="far fa-edit"></i>
-                            </a>
-                          </div>
-                          <ul className="address-details">
-                            <li>Name: Annie Mario</li>
-                            <li>Email: annie@example.com</li>
-                            <li>Phone: 1234 567890</li>
-                            <li className="mt--30">
-                              7398 Smoke Ranch Road <br />
-                              Las Vegas, Nevada 89128
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -193,37 +183,27 @@ export const MyAccount = () => {
                           <div className="col-lg-6">
                             <div className="form-group">
                               <label>First Name</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                value="Annie"
-                              />
+                              <input type="text" className="form-control" value="Annie" />
                             </div>
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
                               <label>Last Name</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                value="Mario"
-                              />
+                              <input type="text" className="form-control" value="Mario" />
                             </div>
                           </div>
                           <div className="col-12">
                             <div className="form-group mb--40">
-                              <label>Country/ Region</label>
+                              <label>Country/Region</label>
                               <select className="select2">
                                 <option value="1">United Kingdom (UK)</option>
                                 <option value="1">United States (USA)</option>
-                                <option value="1">
-                                  United Arab Emirates (UAE)
-                                </option>
+                                <option value="1">United Arab Emirates (UAE)</option>
                                 <option value="1">Australia</option>
                               </select>
                               <p className="b3 mt--10">
-                                This will be how your name will be displayed in
-                                the account section and in reviews
+                                This will be how your name will be displayed in the
+                                account section and in reviews
                               </p>
                             </div>
                           </div>
@@ -231,11 +211,7 @@ export const MyAccount = () => {
                             <h5 className="title">Password Change</h5>
                             <div className="form-group">
                               <label>Password</label>
-                              <input
-                                type="password"
-                                className="form-control"
-                                value="123456789101112131415"
-                              />
+                              <input type="password" className="form-control" value="123456789101112131415" />
                             </div>
                             <div className="form-group">
                               <label>New Password</label>
@@ -246,11 +222,7 @@ export const MyAccount = () => {
                               <input type="password" className="form-control" />
                             </div>
                             <div className="form-group mb--0">
-                              <input
-                                type="submit"
-                                className="axil-btn"
-                                value="Save Changes"
-                              />
+                              <input type="submit" className="axil-btn" value="Save Changes" />
                             </div>
                           </div>
                         </div>

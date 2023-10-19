@@ -25,9 +25,8 @@ import { YourCart } from "./Components/YourCart";
 import { YourWishList } from "./Components/YourWishList";
 import { Checkout } from "./Components/CheckOut";
 import { AuthHeader } from "./Components/AuthHeader";
-import { SigninForm } from "./Components/SigninForm.";
+import { AuthForm } from "./Components/AuthForm";
 import { ForgotPasswordForm } from "./Components/ForgotPasswordForm";
-import { SignupForm } from "./Components/Signup";
 import { ResetForm } from "./Components/ResetForm";
 import { PrivacyPolicy } from "./Components/PrivacyPolicy";
 import { ErrorPage } from "./Components/ErrorPage";
@@ -41,6 +40,8 @@ import { useEffect, useState } from "react";
 import $ from "jquery";
 import "slick-carousel"; // Import the Slider component from react-slick
 import sal from "sal.js";
+import { Helmet } from "react-helmet";
+import { useRef } from "react";
 
 function App() {
   return (
@@ -135,7 +136,7 @@ function App() {
             element={
               <>
                 <AuthHeader page="sign-in" />
-                <SigninForm />
+                <AuthForm isSignIn={true} />
               </>
             }
           />
@@ -144,7 +145,7 @@ function App() {
             element={
               <>
                 <AuthHeader />
-                <SignupForm />
+                <AuthForm />
               </>
             }
           />

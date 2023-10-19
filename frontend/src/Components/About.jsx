@@ -29,7 +29,7 @@ export const About = () => {
                 <div className="row">
                   <div className="col-xl-6">
                     <p>
-                      Empower your sales teams with industry tailored solutions
+                      Empower your sales teams with industry-tailored solutions
                       that support manufacturers as they go digital, and adapt
                       to changing markets & customers faster by creating new
                       business.
@@ -57,9 +57,9 @@ export const About = () => {
                   <img src="assets/images/about/shape-01.png" alt="Shape" />
                 </div>
                 <div className="content">
-                  <h6 className="title">40,000+ Happy Customer</h6>
+                  <h6 className="title">40,000+ Happy Customers</h6>
                   <p>
-                    Empower your sales teams with industry tailored solutions
+                    Empower your sales teams with industry-tailored solutions
                     that support.
                   </p>
                 </div>
@@ -71,9 +71,9 @@ export const About = () => {
                   <img src="assets/images/about/shape-02.png" alt="Shape" />
                 </div>
                 <div className="content">
-                  <h6 className="title">16 Years of Experiences</h6>
+                  <h6 className="title">16 Years of Experience</h6>
                   <p>
-                    Empower your sales teams with industry tailored solutions
+                    Empower your sales teams with industry-tailored solutions
                     that support.
                   </p>
                 </div>
@@ -87,7 +87,7 @@ export const About = () => {
                 <div className="content">
                   <h6 className="title">12 Awards Won</h6>
                   <p>
-                    Empower your sales teams with industry tailored solutions
+                    Empower your sales teams with industry-tailored solutions
                     that support.
                   </p>
                 </div>

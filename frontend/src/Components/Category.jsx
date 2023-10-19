@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Sal from "sal.js";
-
+import $ from "jquery"; // Import jQuery
 export const Category = () => {
   const categories = [
     {
@@ -56,11 +56,60 @@ export const Category = () => {
   ];
 
   const slickSettings = {
-    dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 5,
+    slidesToScroll: 7,
+    arrows: true,
+    dots: false,
+    autoplay: false,
+    speed: 1000,
+    prevArrow: (
+      <button class="slide-arrow prev-arrow">
+        <i class="fal fa-long-arrow-left"></i>
+      </button>
+    ),
+    nextArrow: (
+      <button class ="slide-arrow next-arrow">
+        <i class="fal fa-long-arrow-right"></i>
+      </button>
+    ),
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+        },
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 479,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   useEffect(() => {
     Sal();

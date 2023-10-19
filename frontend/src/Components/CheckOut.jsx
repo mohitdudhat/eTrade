@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 export const Checkout = () => {
   const [selectedShippingMethod, setSelectedShippingMethod] =
     useState("Free Shipping");
 
   const handleShippingMethodChange = (event) => {
     setSelectedShippingMethod(event.target.value);
+  };
+
+  const handleLoginClick = () => {
+    // Add your login functionality here.
+  };
+
+  const handleApplyCouponClick = () => {
+    // Add your coupon code application functionality here.
   };
 
   return (
@@ -18,9 +26,9 @@ export const Checkout = () => {
                 <div className="axil-toggle-box">
                   <div className="toggle-bar">
                     <i className="fas fa-user"></i> Returning customer?{" "}
-                    <a href="javascript:void(0)" className="toggle-btn">
+                    <Link className="toggle-btn" onClick={handleLoginClick}>
                       Click here to login <i className="fas fa-angle-down"></i>
-                    </a>
+                    </Link>
                   </div>
                   <div className="axil-checkout-login toggle-open">
                     <p>If you haven't logged in, please log in first.</p>
@@ -43,8 +51,9 @@ export const Checkout = () => {
                       </div>
                       <div className="form-group mb--0">
                         <button
-                          type="submit"
+                          type="button"
                           className="axil-btn btn-bg-primary submit-btn"
+                          onClick={handleLoginClick}
                         >
                           Sign In
                         </button>
@@ -55,10 +64,13 @@ export const Checkout = () => {
                 <div className="axil-toggle-box">
                   <div className="toggle-bar">
                     <i className="fas fa-pencil"></i> Have a coupon?{" "}
-                    <a href="javascript:void(0)" className="toggle-btn">
+                    <Link
+                      className="toggle-btn"
+                      onClick={handleApplyCouponClick}
+                    >
                       Click here to enter your code{" "}
                       <i className="fas fa-angle-down"></i>
-                    </a>
+                    </Link>
                   </div>
                   <div className="axil-checkout-coupon toggle-open">
                     <p>If you have a coupon code, please apply it below.</p>
@@ -66,8 +78,9 @@ export const Checkout = () => {
                       <input placeholder="Enter coupon code" type="text" />
                       <div className="apply-btn">
                         <button
-                          type="submit"
+                          type="button"
                           className="axil-btn btn-bg-primary"
+                          onClick={handleApplyCouponClick}
                         >
                           Apply
                         </button>
@@ -155,18 +168,14 @@ export const Checkout = () => {
                   <input type="checkbox" id="checkbox1" name="account-create" />
                   <label htmlFor="checkbox1">Create an account</label>
                 </div>
-                <div className="form-group different-shippng">
+                <div className="form-group different-shipping">
                   <div className="toggle-bar">
-                    <a href="/" className="toggle-btn">
-                      <input
-                        type="checkbox"
-                        id="checkbox2"
-                        name="diffrent-ship"
-                      />
-                      <label for="checkbox2">
-                        Ship to a different address?
-                      </label>
-                    </a>
+                    <input
+                      type="checkbox"
+                      id="checkbox2"
+                      name="different-ship"
+                    />
+                    <label for="checkbox2">Ship to a different address?</label>
                   </div>
                   <div className="toggle-open">
                     <div className="form-group">
@@ -178,7 +187,7 @@ export const Checkout = () => {
                         <option value="4">England</option>
                         <option value="6">New Zealand</option>
                         <option value="5">Switzerland</option>
-                        <option value="1">United Kindom (UK)</option>
+                        <option value="1">United Kingdom (UK)</option>
                         <option value="2">United States (USA)</option>
                       </select>
                     </div>
@@ -195,7 +204,7 @@ export const Checkout = () => {
                       <input
                         type="text"
                         id="address2"
-                        placeholder="Apartment, suite, unit, etc. (optonal)"
+                        placeholder="Apartment, suite, unit, etc. (optional)"
                       />
                     </div>
                     <div className="form-group">

@@ -1,7 +1,52 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import WooCommerce from "./WooCommerce";
+import $ from "jquery"; // Import jQuery
 
 export const SingleProduct = () => {
+  const smallThumbRef = useRef(null);
+  const largeThumbRef = useRef(null);
+
+  useEffect(() => {
+    // Initialize the small thumbnail slider
+    $(".color-variant > li").on("click", function (e) {
+      $(this).addClass("active").siblings().removeClass("active");
+    });
+    $(smallThumbRef.current).slick({
+      infinite: false,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      focusOnSelect: true,
+      vertical: true,
+      speed: 800,
+      draggable: false,
+      swipe: false,
+      asNavFor: largeThumbRef.current,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            vertical: false,
+          },
+        },
+      ],
+    });
+
+    // Initialize the large thumbnail slider
+    $(largeThumbRef.current).slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      speed: 800,
+      draggable: false,
+      swipe: false,
+      asNavFor: smallThumbRef.current,
+    });
+  }, []);
+
   return (
     <div>
       <div className="axil-single-product-area axil-section-gap pb--0 bg-color-white">
@@ -12,7 +57,10 @@ export const SingleProduct = () => {
                 <div className="row">
                   <div className="col-lg-10 order-lg-2">
                     <div className="single-product-thumbnail-wrap zoom-gallery">
-                      <div className="single-product-thumbnail product-large-thumbnail-3 axil-product">
+                      <div
+                        className="single-product-thumbnail product-large-thumbnail-3 axil-product"
+                        ref={largeThumbRef}
+                      >
                         <div className="thumbnail">
                           <a
                             href="assets/images/product/product-big-01.png"
@@ -72,7 +120,10 @@ export const SingleProduct = () => {
                     </div>
                   </div>
                   <div className="col-lg-2 order-lg-1">
-                    <div className="product-small-thumb-3 small-thumb-wrapper">
+                    <div
+                      className="product-small-thumb-3 small-thumb-wrapper"
+                      ref={smallThumbRef}
+                    >
                       <div className="small-thumb-img">
                         <img
                           src="assets/images/product/product-thumb/thumb-08.png"
@@ -209,3 +260,5 @@ export const SingleProduct = () => {
     </div>
   );
 };
+
+export default SingleProduct;

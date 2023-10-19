@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const YourWishList = () => {
+  const [wishlistItems, setWishlistItems] = useState([
+    {
+      id: 1,
+      name: "Wireless PS Handler",
+      price: 124.0,
+      stockStatus: "In Stock",
+    },
+    {
+      id: 2,
+      name: "Gradient Light Keyboard",
+      price: 124.0,
+      stockStatus: "In Stock",
+    },
+    {
+      id: 3,
+      name: "HD CC Camera",
+      price: 124.0,
+      stockStatus: "In Stock",
+    },
+  ]);
+
   return (
     <div className="axil-wishlist-area axil-section-gap">
       <div className="container">
@@ -26,93 +47,38 @@ export const YourWishList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="product-remove">
-                  <a href="#" className="remove-wishlist">
-                    <i className="fal fa-times"></i>
-                  </a>
-                </td>
-                <td className="product-thumbnail">
-                  <a href="single-product.html">
-                    <img
-                      src="assets/images/product/electric/product-01.png"
-                      alt="Digital Product"
-                    />
-                  </a>
-                </td>
-                <td className="product-title">
-                  <a href="single-product.html">Wireless PS Handler</a>
-                </td>
-                <td className="product-price" data-title="Price">
-                  <span className="currency-symbol">$</span>124.00
-                </td>
-                <td className="product-stock-status" data-title="Status">
-                  In Stock
-                </td>
-                <td className="product-add-cart">
-                  <a href="cart.html" className="axil-btn btn-outline">
-                    Add to Cart
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className="product-remove">
-                  <a href="#" className="remove-wishlist">
-                    <i className="fal fa-times"></i>
-                  </a>
-                </td>
-                <td className="product-thumbnail">
-                  <a href="single-product-2.html">
-                    <img
-                      src="assets/images/product/electric/product-02.png"
-                      alt="Digital Product"
-                    />
-                  </a>
-                </td>
-                <td className="product-title">
-                  <a href="single-product-2.html">Gradient Light Keyboard</a>
-                </td>
-                <td className="product-price" data-title="Price">
-                  <span className="currency-symbol">$</span>124.00
-                </td>
-                <td className="product-stock-status" data-title="Status">
-                  In Stock
-                </td>
-                <td className="product-add-cart">
-                  <a href="cart.html" className="axil-btn btn-outline">
-                    Add to Cart
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className="product-remove">
-                  <a href="#" className="remove-wishlist">
-                    <i className="fal fa-times"></i>
-                  </a>
-                </td>
-                <td className="product-thumbnail">
-                  <a href="single-product-3.html">
-                    <img
-                      src="assets/images/product/electric/product-03.png"
-                      alt="Digital Product"
-                    />
-                  </a>
-                </td>
-                <td className="product-title">
-                  <a href="single-product-3.html">HD CC Camera</a>
-                </td>
-                <td className="product-price" data-title="Price">
-                  <span className="currency-symbol">$</span>124.00
-                </td>
-                <td className="product-stock-status" data-title="Status">
-                  In Stock
-                </td>
-                <td className="product-add-cart">
-                  <a href="cart.html" className="axil-btn btn-outline">
-                    Add to Cart
-                  </a>
-                </td>
-              </tr>
+              {wishlistItems.map((item) => (
+                <tr key={item.id}>
+                  <td className="product-remove">
+                    <a href="#" className="remove-wishlist">
+                      <i className="fal fa-times"></i>
+                    </a>
+                  </td>
+                  <td className="product-thumbnail">
+                    <a href={`single-product-${item.id}.html`}>
+                      <img
+                        src={`assets/images/product/electric/product-0${item.id}.png`}
+                        alt="Digital Product"
+                      />
+                    </a>
+                  </td>
+                  <td className="product-title">
+                    <a href={`single-product-${item.id}.html`}>{item.name}</a>
+                  </td>
+                  <td className="product-price" data-title="Price">
+                    <span className="currency-symbol">$</span>
+                    {item.price.toFixed(2)}
+                  </td>
+                  <td className="product-stock-status" data-title="Status">
+                    {item.stockStatus}
+                  </td>
+                  <td className="product-add-cart">
+                    <a href="cart.html" className="axil-btn btn-outline">
+                      Add to Cart
+                    </a>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

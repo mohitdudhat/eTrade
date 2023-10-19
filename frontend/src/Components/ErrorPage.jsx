@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import sal from "sal.js";
 
 export const ErrorPage = () => {
+  useEffect(() => {
+    sal({
+      threshold: 0.5,
+      once: false,
+    });
+  }, []);
+
   return (
     <section className="error-page onepage-screen-area">
       <div className="container">
@@ -45,4 +53,3 @@ export const ErrorPage = () => {
     </section>
   );
 };
-

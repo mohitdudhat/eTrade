@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const YourCart = () => {
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      name: "Wireless PS Handler",
+      price: 124.0,
+      quantity: 1,
+      subtotal: 275.0,
+    },
+    {
+      id: 2,
+      name: "Gradient Light Keyboard",
+      price: 124.0,
+      quantity: 1,
+      subtotal: 275.0,
+    },
+    {
+      id: 3,
+      name: "HD CC Camera",
+      price: 124.0,
+      quantity: 1,
+      subtotal: 275.0,
+    },
+  ]);
+
   return (
     <div className="axil-product-cart-area axil-section-gap">
       <div className="container">
@@ -32,105 +56,43 @@ export const YourCart = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="product-remove">
-                    <a href="#" className="remove-wishlist">
-                      <i className="fal fa-times"></i>
-                    </a>
-                  </td>
-                  <td className="product-thumbnail">
-                    <a href="single-product.html">
-                      <img
-                        src="assets/images/product/electric/product-01.png"
-                        alt="Digital Product"
-                      />
-                    </a>
-                  </td>
-                  <td className="product-title">
-                    <a href="single-product.html">Wireless PS Handler</a>
-                  </td>
-                  <td className="product-price" data-title="Price">
-                    <span className="currency-symbol">$</span>124.00
-                  </td>
-                  <td className="product-quantity" data-title="Qty">
-                    <div className="pro-qty">
-                      <input
-                        type="number"
-                        className="quantity-input"
-                        value="1"
-                      />
-                    </div>
-                  </td>
-                  <td className="product-subtotal" data-title="Subtotal">
-                    <span className="currency-symbol">$</span>275.00
-                  </td>
-                </tr>
-                <tr>
-                  <td className="product-remove">
-                    <a href="#" className="remove-wishlist">
-                      <i className="fal fa-times"></i>
-                    </a>
-                  </td>
-                  <td className="product-thumbnail">
-                    <a href="single-product-2.html">
-                      <img
-                        src="assets/images/product/electric/product-02.png"
-                        alt="Digital Product"
-                      />
-                    </a>
-                  </td>
-                  <td className="product-title">
-                    <a href="single-product-2.html">Gradient Light Keyboard</a>
-                  </td>
-                  <td className="product-price" data-title="Price">
-                    <span className="currency-symbol">$</span>124.00
-                  </td>
-                  <td className="product-quantity" data-title="Qty">
-                    <div className="pro-qty">
-                      <input
-                        type="number"
-                        className="quantity-input"
-                        value="1"
-                      />
-                    </div>
-                  </td>
-                  <td className="product-subtotal" data-title="Subtotal">
-                    <span className="currency-symbol">$</span>275.00
-                  </td>
-                </tr>
-                <tr>
-                  <td className="product-remove">
-                    <a href="#" className="remove-wishlist">
-                      <i className="fal fa-times"></i>
-                    </a>
-                  </td>
-                  <td className="product-thumbnail">
-                    <a href="single-product-3.html">
-                      <img
-                        src="assets/images/product/electric/product-03.png"
-                        alt="Digital Product"
-                      />
-                    </a>
-                  </td>
-                  <td className="product-title">
-                    <a href="single-product-3.html">HD CC Camera</a>
-                  </td>
-                  <td className="product-price" data-title="Price">
-                    <span className="currency-symbol">$</span>124.00
-                  </td>
-                  <td className="product-quantity" data-title="Qty">
-                    <div className="pro-qty">
-                      <input
-                        type="number"
-                        className="quantity-input"
-                        value="1"
-                      />
-                    </div>
-                  </td>
-                  <td className="product-subtotal" data-title="Subtotal">
-                    <span className="currency-symbol">$</span>275.00
-                  </td>
-                </tr>
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td className="product-remove">
+                      <a href="#" className="remove-wishlist">
+                        <i className="fal fa-times"></i>
+                      </a>
+                    </td>
+                    <td className="product-thumbnail">
+                      <a href={`single-product-${item.id}.html`}>
+                        <img
+                          src={`assets/images/product/electric/product-0${item.id}.png`}
+                          alt="Digital Product"
+                        />
+                      </a>
+                    </td>
+                    <td className="product-title">
+                      <a href={`single-product-${item.id}.html`}>{item.name}</a>
+                    </td>
+                    <td className="product-price" data-title="Price">
+                      <span className="currency-symbol">$</span>
+                      {item.price.toFixed(2)}
+                    </td>
+                    <td className="product-quantity" data-title="Qty">
+                      <div className="pro-qty">
+                        <input
+                          type="number"
+                          className="quantity-input"
+                          value={item.quantity}
+                        />
+                      </div>
+                    </td>
+                    <td className="product-subtotal" data-title="Subtotal">
+                      <span className="currency-symbol">$</span>
+                      {item.subtotal.toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -158,7 +120,12 @@ export const YourCart = () => {
                     <tbody>
                       <tr className="order-subtotal">
                         <td>Subtotal</td>
-                        <td>$117.00</td>
+                        <td>
+                          $
+                          {cartItems
+                            .reduce((total, item) => total + item.subtotal, 0)
+                            .toFixed(2)}
+                        </td>
                       </tr>
                       <tr className="order-shipping">
                         <td>Shipping</td>
@@ -188,7 +155,15 @@ export const YourCart = () => {
                       </tr>
                       <tr className="order-total">
                         <td>Total</td>
-                        <td className="order-total-amount">$125.00</td>
+                        <td className="order-total-amount">
+                          $
+                          {(
+                            cartItems.reduce(
+                              (total, item) => total + item.subtotal,
+                              0
+                            ) + 8.0
+                          ).toFixed(2)}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
