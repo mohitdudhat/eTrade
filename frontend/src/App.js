@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Sal from "sal.js";
+
 import { Banner } from "./Components/Banner";
 import { Category } from "./Components/Category";
 import { Poster } from "./Components/Poster";
@@ -44,6 +46,14 @@ import { Helmet } from "react-helmet";
 import { useRef } from "react";
 
 function App() {
+  useEffect(() => {
+    setTimeout(() => {
+      sal({
+        threshold: 0.3,
+        once: true,
+      });
+    }, 500);
+  }, []);
   return (
     <div>
       <BrowserRouter>
@@ -85,7 +95,7 @@ function App() {
             }
           />
           <Route
-            path="/single-product.html"
+            path="/single-product.html/:id"
             element={
               <>
                 <Header />

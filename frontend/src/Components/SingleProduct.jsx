@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import WooCommerce from "./WooCommerce";
 import $ from "jquery"; // Import jQuery
-
+import axios from "axios";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 export const SingleProduct = () => {
   const smallThumbRef = useRef(null);
   const largeThumbRef = useRef(null);
+  const [productData, setProductData] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    // Initialize the small thumbnail slider
     $(".color-variant > li").on("click", function (e) {
       $(this).addClass("active").siblings().removeClass("active");
     });
@@ -32,8 +35,6 @@ export const SingleProduct = () => {
         },
       ],
     });
-
-    // Initialize the large thumbnail slider
     $(largeThumbRef.current).slick({
       infinite: false,
       slidesToShow: 1,
@@ -45,218 +46,200 @@ export const SingleProduct = () => {
       swipe: false,
       asNavFor: smallThumbRef.current,
     });
+
+    // Fetch product data
+    axios
+      .get(`http://localhost:3001/products/${id}`)
+      .then((response) => {
+        setProductData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+    console.log(productData.images);
   }, []);
 
   return (
     <div>
-      <div className="axil-single-product-area axil-section-gap pb--0 bg-color-white">
-        <div className="single-product-thumb mb--40">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-7 mb--40">
-                <div className="row">
-                  <div className="col-lg-10 order-lg-2">
-                    <div className="single-product-thumbnail-wrap zoom-gallery">
-                      <div
-                        className="single-product-thumbnail product-large-thumbnail-3 axil-product"
-                        ref={largeThumbRef}
-                      >
-                        <div className="thumbnail">
-                          <a
-                            href="assets/images/product/product-big-01.png"
-                            className="popup-zoom"
+      {productData && (
+        <div className="axil-single-product-area axil-section-gap pb--0 bg-color-white">
+          <div className="single-product-thumb mb--40">
+            <div className="container">
+              <div className="row">
+                {productData.images && productData.images.length > 0 && (
+                  <div className="col-lg-7 mb--40">
+                    <div className="row">
+                      <div className="col-lg-10 order-lg-2">
+                        <div className="single-product-thumbnail-wrap zoom-gallery">
+                          <div
+                            className="single-product-thumbnail product-large-thumbnail-3 axil-product"
+                            ref={largeThumbRef}
                           >
-                            <img
-                              src="assets/images/product/product-big-01.png"
-                              alt="Product Images"
-                            />
-                          </a>
-                        </div>
-                        <div className="thumbnail">
-                          <a
-                            href="assets/images/product/product-big-02.png"
-                            className="popup-zoom"
-                          >
-                            <img
-                              src="assets/images/product/product-big-02.png"
-                              alt="Product Images"
-                            />
-                          </a>
-                        </div>
-                        <div className="thumbnail">
-                          <a
-                            href="assets/images/product/product-big-03.png"
-                            className="popup-zoom"
-                          >
-                            <img
-                              src="assets/images/product/product-big-03.png"
-                              alt="Product Images"
-                            />
-                          </a>
-                        </div>
-                        <div className="thumbnail">
-                          <a
-                            href="assets/images/product/product-big-02.png"
-                            className="popup-zoom"
-                          >
-                            <img
-                              src="assets/images/product/product-big-02.png"
-                              alt="Product Images"
-                            />
-                          </a>
+                            {productData.images.map((image, index) => (
+                              <div className="thumbnail" key={index}>
+                                <a href={image} className="popup-zoom">
+                                  <img src={image} alt="Product Images" />
+                                </a>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="label-block">
+                            <div className="product-badget">
+                              {productData.discount &&
+                                productData.discount.discountText}
+                            </div>
+                          </div>
+                          <div className="product-quick-view position-view">
+                            <a
+                              href={productData.images[0]}
+                              className="popup-zoom"
+                            >
+                              <i className="far fa-search-plus"></i>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                      <div className="label-block">
-                        <div className="product-badget">20% OFF</div>
-                      </div>
-                      <div className="product-quick-view position-view">
-                        <a
-                          href="assets/images/product/product-big-01.png"
-                          className="popup-zoom"
+                      <div className="col-lg-2 order-lg-1">
+                        <div
+                          className="product-small-thumb-3 small-thumb-wrapper"
+                          ref={smallThumbRef}
                         >
-                          <i className="far fa-search-plus"></i>
-                        </a>
+                          {productData.images.map((image, index) => (
+                            <div className="small-thumb-img" key={index}>
+                              <img src={image} alt="thumb" />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-2 order-lg-1">
-                    <div
-                      className="product-small-thumb-3 small-thumb-wrapper"
-                      ref={smallThumbRef}
-                    >
-                      <div className="small-thumb-img">
-                        <img
-                          src="assets/images/product/product-thumb/thumb-08.png"
-                          alt="thumb"
-                        />
+                )}
+                <div className="col-lg-5 mb--40">
+                  <div className="single-product-content">
+                    <div className="inner">
+                      <h2 className="product-title">
+                        {productData.productTitle}
+                      </h2>
+                      <span className="price-amount">
+                        {productData.price}&nbsp;&nbsp;&nbsp;
+                        <del
+                          style={{
+                            color: "#d6d6d6",
+                            textDecoration: "line-through",
+                            marginLeft: "0",
+                          }}
+                        >
+                          {productData.oldPrice}
+                        </del>
+                      </span>
+                      <div className="product-rating">
+                        <div className="star-rating">
+                          {Array.from({
+                            length: productData.productRating,
+                          }).map((_, index) => (
+                            <i key={index} className="fas fa-star"></i>
+                          ))}
+                          {Array.from({
+                            length: 5 - productData.productRating,
+                          }).map((_, index) => (
+                            <i key={index} className="far fa-star"></i>
+                          ))}
+                        </div>
+                        <div className="review-link">
+                          <a href="/">
+                            (<span>{productData.totalReviews}</span> customer
+                            reviews)
+                          </a>
+                        </div>
                       </div>
-                      <div className="small-thumb-img">
-                        <img
-                          src="assets/images/product/product-thumb/thumb-07.png"
-                          alt="thumb"
-                        />
-                      </div>
-                      <div className="small-thumb-img">
-                        <img
-                          src="assets/images/product/product-thumb/thumb-09.png"
-                          alt="thumb"
-                        />
-                      </div>
-                      <div className="small-thumb-img">
-                        <img
-                          src="assets/images/product/product-thumb/thumb-07.png"
-                          alt="thumb"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-5 mb--40">
-                <div className="single-product-content">
-                  <div className="inner">
-                    <h2 className="product-title">3D™ wireless headset</h2>
-                    <span className="price-amount">$155.00 - $255.00</span>
-                    <div className="product-rating">
-                      <div className="star-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="far fa-star"></i>
-                      </div>
-                      <div className="review-link">
-                        <a href="/">
-                          (<span>2</span> customer reviews)
-                        </a>
-                      </div>
-                    </div>
-                    <ul className="product-meta">
-                      <li>
-                        <i className="fal fa-check"></i>In stock
-                      </li>
-                      <li>
-                        <i className="fal fa-check"></i>Free delivery available
-                      </li>
-                      <li>
-                        <i className="fal fa-check"></i>Sales 30% Off Use Code:
-                        MOTIVE30
-                      </li>
-                    </ul>
-                    <p className="description">
-                      In ornare lorem ut est dapibus, ut tincidunt nisi pretium.
-                      Integer ante est, elementum eget magna. Pellentesque
-                      sagittis dictum libero, eu dignissim tellus.
-                    </p>
-
-                    <div className="product-variations-wrapper">
-                      <div className="product-variation">
-                        <h6 className="title">Colors:</h6>
-                        <div className="color-variant-wrapper">
-                          <ul className="color-variant">
-                            <li className="color-extra-01 active">
-                              <span>
-                                <span className="color"></span>
-                              </span>
-                            </li>
-                            <li className="color-extra-02">
-                              <span>
-                                <span className="color"></span>
-                              </span>
-                            </li>
-                            <li className="color-extra-03">
-                              <span>
-                                <span className="color"></span>
-                              </span>
-                            </li>
+                      <ul className="product-meta">
+                        <li>
+                          <i className="fal fa-check"></i>
+                          {productData.isProductInStock
+                            ? "In stock"
+                            : "Out of stock"}
+                        </li>
+                        <li>
+                          <i className="fal fa-check"></i>
+                          {productData.isFreeDeliveryAvailable
+                            ? "Free delivery available"
+                            : "Delivery charges apply"}
+                        </li>
+                        <li>
+                          <i className="fal fa-check"></i>
+                          {productData.discount
+                            ? `Sales ${productData.discount.discountText} Use Code: ${productData.discountCode}`
+                            : ""}
+                        </li>
+                      </ul>
+                      <p className="description">{productData.description}</p>
+                      <div className="product-variations-wrapper">
+                        <div className="product-variation">
+                          <h6 className="title">Colors:</h6>
+                          <div className="color-variant-wrapper">
+                            <ul className="color-variant">
+                              {productData.colors &&
+                                productData.colors.map((color, index) => (
+                                  <li
+                                    key={index}
+                                    className={`color-extra-0${index + 1} ${
+                                      index === 0 ? "active" : ""
+                                    }`}
+                                  >
+                                    <span>
+                                      <span
+                                        className="color"
+                                        style={{ backgroundColor: color }}
+                                      ></span>
+                                    </span>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="product-variation product-size-variation">
+                          <h6 className="title">Size:</h6>
+                          <ul className="range-variant">
+                            {productData.sizes &&
+                              productData.sizes.map((size, index) => (
+                                <li key={index}>{size}</li>
+                              ))}
                           </ul>
                         </div>
                       </div>
-
-                      <div className="product-variation product-size-variation">
-                        <h6 className="title">Size:</h6>
-                        <ul className="range-variant">
-                          <li>xs</li>
-                          <li>s</li>
-                          <li>m</li>
-                          <li>l</li>
-                          <li>xl</li>
+                      <div className="product-action-wrapper d-flex-center">
+                        <div className="pro-qty">
+                          <input type="text" defaultValue="1" />
+                        </div>
+                        <ul className="product-action d-flex-center mb--0">
+                          <li className="add-to-cart">
+                            <a
+                              href="cart.html"
+                              className="axil-btn btn-bg-primary"
+                            >
+                              Add to Cart
+                            </a>
+                          </li>
+                          <li className="wishlist">
+                            <a
+                              href="wishlist.html"
+                              className="axil-btn wishlist-btn"
+                            >
+                              <i className="far fa-heart"></i>
+                            </a>
+                          </li>
                         </ul>
                       </div>
-                    </div>
-
-                    <div className="product-action-wrapper d-flex-center">
-                      <div className="pro-qty">
-                        <input type="text" defaultValue="1" />
-                      </div>
-
-                      <ul className="product-action d-flex-center mb--0">
-                        <li className="add-to-cart">
-                          <a
-                            href="cart.html"
-                            className="axil-btn btn-bg-primary"
-                          >
-                            Add to Cart
-                          </a>
-                        </li>
-                        <li className="wishlist">
-                          <a
-                            href="wishlist.html"
-                            className="axil-btn wishlist-btn"
-                          >
-                            <i className="far fa-heart"></i>
-                          </a>
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <WooCommerce />
         </div>
-        <WooCommerce />
-      </div>
+      )}
     </div>
   );
 };

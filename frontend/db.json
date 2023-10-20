@@ -1,19 +1,410 @@
 {
-  "posts": [
+  "products": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "productTitle": "3D™ wireless headset",
+      "price": "$155.00",
+      "oldPrice": "$255.00",
+      "productRating": 4,
+      "totalReviews": 2,
+      "isProductInStock": true,
+      "isFreeDeliveryAvailable": true,
+      "discountCode": "MOTIVE30",
+      "description": "In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.",
+      "colors": [
+        "#aae6f8",
+        "#5f8af7",
+        "#59c3c0"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "images": [
+        "/assets/images/product/product-big-01.png",
+        "/assets/images/product/product-big-02.png",
+        "/assets/images/product/product-big-03.png",
+        "/assets/images/product/product-big-02.png"
+      ],
+      "thumbnail": "/assets/images/product/product-big-01.png",
+      "discount": {
+        "discountPercentage": 20,
+        "discountText": "20% OFF"
+      }
+    },
+    {
+      "id": 2,
+      "productTitle": "3D™ wireless headset Seconde one",
+      "price": "$155.00",
+      "oldPrice": "$255.00",
+      "productRating": 4,
+      "totalReviews": 2,
+      "isProductInStock": true,
+      "isFreeDeliveryAvailable": true,
+      "discountCode": "MOTIVE30",
+      "description": "In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.",
+      "colors": [
+        "#aae6f8",
+        "#5f8af7",
+        "#59c3c0"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "images": [
+        "/assets/images/product/product-big-01.png",
+        "/assets/images/product/product-big-02.png",
+        "/assets/images/product/product-big-03.png",
+        "/assets/images/product/product-big-02.png"
+      ],
+      "thumbnail": "/assets/images/product/product-big-01.png",
+      "discount": {
+        "discountPercentage": 20,
+        "discountText": "20% OFF"
+      }
+    },
+    {
+      "id": 3,
+      "productTitle": "Yantiti Leather & Canvas Bags",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": true,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "/assets/images/product/product-big-01.png",
+        "/assets/images/product/product-big-02.png",
+        "/assets/images/product/product-big-03.png",
+        "/assets/images/product/product-big-02.png"
+      ],
+      "thumbnail": "/assets/images/product/product-big-01.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 4,
+      "productTitle": "Level 20 RGB Cherry",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 4,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-02.png",
+        "assets/images/product/electric/product-02.png",
+        "assets/images/product/electric/product-02.png",
+        "assets/images/product/electric/product-02.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-02.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 5,
+      "productTitle": "Logitech Streamcam",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-03.png",
+        "assets/images/product/electric/product-03.png",
+        "assets/images/product/electric/product-03.png",
+        "assets/images/product/electric/product-03.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-03.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 6,
+      "productTitle": "3D™ wireless headset",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-04.png",
+        "assets/images/product/electric/product-04.png",
+        "assets/images/product/electric/product-04.png",
+        "assets/images/product/electric/product-04.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-04.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 7,
+      "productTitle": "Bass Meets Clarity",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-05.png",
+        "assets/images/product/electric/product-05.png",
+        "assets/images/product/electric/product-05.png",
+        "assets/images/product/electric/product-05.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-05.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 8,
+      "productTitle": "Mice Logitech",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-06.png",
+        "assets/images/product/electric/product-06.png",
+        "assets/images/product/electric/product-06.png",
+        "assets/images/product/electric/product-06.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-06.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 9,
+      "productTitle": "Zone Headphone",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-07.png",
+        "assets/images/product/electric/product-07.png",
+        "assets/images/product/electric/product-07.png",
+        "assets/images/product/electric/product-07.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-07.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
+    },
+    {
+      "id": 10,
+      "productTitle": "3D™ wireless headset",
+      "price": "$29.99",
+      "oldPrice": "$49.99",
+      "productRating": 5,
+      "totalReviews": 0,
+      "isProductInStock": false,
+      "isFreeDeliveryAvailable": false,
+      "discountCode": "SALE10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero vulputate, dapibus nunc id, venenatis est. Sed eget nunc vel purus accumsan scelerisque. Sed consectetur viverra lacus ac elementum.",
+      "colors": [
+        "#ff5733",
+        "#3377ff",
+        "#33ff33"
+      ],
+      "sizes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "images": [
+        "assets/images/product/electric/product-08.png",
+        "assets/images/product/electric/product-08.png",
+        "assets/images/product/electric/product-08.png",
+        "assets/images/product/electric/product-08.png"
+      ],
+      "thumbnail": "assets/images/product/electric/product-08.png",
+      "discount": {
+        "discountPercentage": 10,
+        "discountText": "10% OFF"
+      }
     }
   ],
-  "comments": [
+  "arrivals": [
+    {
+      "product_id": 6,
+      "timePeriodOfArrivals": "Week"
+    },
+    {
+      "product_id": 7,
+      "timePeriodOfArrivals": "Week"
+    },
+    {
+      "product_id": 8,
+      "timePeriodOfArrivals": "Week"
+    },
+    {
+      "product_id": 9,
+      "timePeriodOfArrivals": "Week"
+    },
+    {
+      "product_id": 10,
+      "timePeriodOfArrivals": "Week"
+    }
+  ],
+  "trending": [
+    {
+      "product_id": 11,
+      "trendingTitle": "Most Sold"
+    }
+  ],
+  "users": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "username": "user123",
+      "email": "user@example.com",
+      "password": "hashedpassword123",
+      "shippingAddress": {
+        "street": "123 Main St",
+        "city": "Example City",
+        "state": "CA",
+        "zip": "12345"
+      }
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "orders": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "products": [
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 59.98,
+      "orderDate": "2023-10-19T14:30:00Z",
+      "status": "Shipped"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "product_id": 1,
+      "user_id": 2,
+      "text": "Great product!",
+      "rating": 5
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics"
+    }
+  ]
 }

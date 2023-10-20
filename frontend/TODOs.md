@@ -8,7 +8,7 @@ Hard
 3.Slick integration is remains
 
 Done component BUT DOM issue
-Category
+Category But DOM
 Signin
 SignUp
 Reset Password
@@ -20,3 +20,4 @@ Team
 AboutFeatures
 MyAccount
 ContactForm
+Explore but DOM
