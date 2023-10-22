@@ -1,6 +1,13 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 export const AuthForm = ({ isSignIn }) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const formTitle = isSignIn ? "Sign in to eTrade." : "I'm New Here";
   const buttonText = isSignIn ? "Sign In" : "Create Account";
   const usernameField = isSignIn ? null : (
@@ -10,11 +17,93 @@ export const AuthForm = ({ isSignIn }) => {
         type="text"
         className="form-control"
         name="username"
-        value="anniemario"
+        defaultValue="anniemario"
+        value={formData.username}
+        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       />
     </div>
   );
+  const validateFormData = () => {
+    if (!isSignIn && !formData.username) {
+      alert("Username is required");
+      return false;
+    }
+    if (!formData.email) {
+      alert("Email is required");
+      return false;
+    }
 
+    if (!formData.password) {
+      alert("Password is required");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let user;
+    if (validateFormData() && !isSignIn) {
+      user = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      };
+      console.log("User Object:", user);
+    }
+    if (validateFormData() && isSignIn) {
+      user = {
+        email: formData.email,
+        password: formData.password,
+      };
+
+      console.log("User Object:", user);
+    }
+    console.log(user);
+    try {
+      // Check if the user already exists
+
+      if (isSignIn) {
+        const existingUserResponse = await axios.get(
+          `http://localhost:3001/users?email=${formData.email}&username=${formData.password}`
+        );
+        console.log(existingUserResponse.data);
+        localStorage.setItem(
+          "user_id",
+          JSON.stringify(existingUserResponse.data[0].id)
+        );
+        const user_data = await axios.get(
+          `http://localhost:3001/users_data?user_id=${existingUserResponse.data[0].id}`
+        );
+        console.log(user_data);
+        localStorage.setItem("user_data", JSON.stringify(user_data.data[0]));
+        window.location.href = "/";
+      } else {
+        const existingUserResponse = await axios.get(
+          `http://localhost:3001/users?email=${formData.email}&username=${formData.username}`
+        );
+        if (existingUserResponse.data.length > 0 && !isSignIn) {
+          alert("A user with this email or username already exists.");
+        } else {
+          // User doesn't exist, proceed to create the user
+          const createUserResponse = await axios.post(
+            `http://localhost:3001/users`,
+            user
+          );
+          console.log("User Object:", user);
+          console.log(createUserResponse.data);
+        }
+      }
+    } catch (error) {
+      console.error("Error checking/creating user:", error);
+    }
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+    });
+  };
   return (
     <div className="row">
       <div className="col-xl-4 col-lg-6">
@@ -39,7 +128,11 @@ export const AuthForm = ({ isSignIn }) => {
                   type="email"
                   className="form-control"
                   name="email"
-                  value="annie@example.com"
+                  value={formData.email}
+                  defaultValue="annie@example.com"
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                 />
               </div>
               <div className="form-group">
@@ -48,13 +141,18 @@ export const AuthForm = ({ isSignIn }) => {
                   type="password"
                   className="form-control"
                   name="password"
-                  value="123456789"
+                  defaultValue="123456789"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                 />
               </div>
               <div className="form-group d-flex align-items-center justify-content-between">
                 <button
-                  type="submit"
+                  type="button"
                   className="axil-btn btn-bg-primary submit-btn"
+                  onClick={(e) => handleSubmit(e)}
                 >
                   {buttonText}
                 </button>
@@ -70,4 +168,7 @@ export const AuthForm = ({ isSignIn }) => {
       </div>
     </div>
   );
+};
+AuthForm.defaultProps = {
+  isSignIn: false,
 };

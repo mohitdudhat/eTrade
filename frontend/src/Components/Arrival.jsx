@@ -123,7 +123,7 @@ export const Arrival = () => {
                                 </Link>
                               </li>
                               <li className="select-option">
-                                <Link to="single-product.html">
+                                <Link to={`single-product.html/${product.id}`}>
                                   Add to Cart
                                 </Link>
                               </li>

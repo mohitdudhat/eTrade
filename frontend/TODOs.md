@@ -21,3 +21,4 @@ AboutFeatures
 MyAccount
 ContactForm
 Explore but DOM
+Trending

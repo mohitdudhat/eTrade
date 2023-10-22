@@ -39,7 +39,7 @@ export const Explore = () => {
                   >
                     <div className="axil-product product-style-one">
                       <div className="thumbnail">
-                        <a href="single-product.html">
+                        <a href={`single-product.html/${product.id}`}>
                           <img
                             data-sal="zoom-out"
                             data-sal-delay="200"
@@ -65,12 +65,12 @@ export const Explore = () => {
                               </a>
                             </li>
                             <li className="select-option">
-                              <a href={`single-product.html/${product.id}`}>
+                              <a href={`cart.html?id=${product.id}`}>
                                 Add to Cart
                               </a>
                             </li>
                             <li className="wishlist">
-                              <a href="wishlist.html">
+                              <a href={`wishlist.html?id=${product.id}`}>
                                 <i className="far fa-heart"></i>
                               </a>
                             </li>

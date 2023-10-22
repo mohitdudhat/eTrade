@@ -69,7 +69,7 @@ export const Category = () => {
       </button>
     ),
     nextArrow: (
-      <button class ="slide-arrow next-arrow">
+      <button class="slide-arrow next-arrow">
         <i class="fal fa-long-arrow-right"></i>
       </button>
     ),
@@ -112,14 +112,19 @@ export const Category = () => {
     ],
   };
   useEffect(() => {
-    Sal();
+    setTimeout(() => {
+      Sal({
+        threshold: 0.3,
+        once: true,
+      });
+    }, 300);
   }, []);
 
   return (
     <div className="axil-categorie-area bg-color-white axil-section-gapcommon">
       <div className="container">
         <div className="section-title-wrapper">
-          <span className="title-highlighter highlighter-secondary">
+          <span claasName="title-highlighter highlighter-secondary">
             <i className="far fa-tags"></i> Categories
           </span>
           <h2 className="title">Browse by Category</h2>
@@ -136,7 +141,7 @@ export const Category = () => {
                 data-sal-delay={category.salDelay || 0}
                 data-sal-duration="500"
               >
-                <Link to="/">
+                <Link to={`/shop.html?category=${category.title}`}>
                   <img
                     className="img-fluid"
                     src={category.imgSrc}
