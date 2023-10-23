@@ -93,6 +93,30 @@ export const AuthForm = ({ isSignIn }) => {
           );
           console.log("User Object:", user);
           console.log(createUserResponse.data);
+          const currentDate = new Date();
+          const formattedDate = new Intl.DateTimeFormat("en-GB").format(
+            currentDate
+          );
+
+          console.log(formattedDate); // Output the formatted date
+
+          const user_data = {
+            signUpDate: formattedDate,
+            username: "p",
+            username: createUserResponse.data.username,
+            email: createUserResponse.data.email,
+            user_id: createUserResponse.data.id,
+            cart: [],
+            wishlist: [],
+            PendingOrders: [],
+            shippingAddress: [],
+          };
+          console.log(user_data);
+          const createUserdata = await axios.post(
+            `http://localhost:3001/users_data`,
+            user_data
+          );
+          console.log(createUserdata.data);
         }
       }
     } catch (error) {
