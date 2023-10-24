@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Sal from "sal.js";
-export const Trending = () => {
+const Trending = () => {
   const [trendingData, setTrendingData] = useState([]);
   const [productData, setProductData] = useState([]);
   const [filteredProductData, setFilteredProductData] = useState(false);
@@ -11,7 +10,6 @@ export const Trending = () => {
       .get(`http://localhost:3001/trending`)
       .then((response) => {
         setTrendingData(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -20,12 +18,10 @@ export const Trending = () => {
       .get(`http://localhost:3001/products`)
       .then((response) => {
         setProductData(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-    console.log(productData);
   }, []);
   useEffect(() => {
     if (trendingData.length > 0 && productData.length > 0) {
@@ -36,14 +32,7 @@ export const Trending = () => {
       const filteredData = productData.filter((product) =>
         trendingProductIds.includes(product.id)
       );
-      console.log(productData);
       setFilteredProductData(filteredData);
-      setTimeout(() => {
-        Sal({
-          threshold: 0.3,
-          once: true,
-        });
-      }, 300);
     }
   }, [trendingData, productData]);
 
@@ -122,10 +111,16 @@ export const Trending = () => {
                         )}
                       </div>
                       <div className="product-cart">
-                        <Link to="cart.html" className="cart-btn">
+                        <Link
+                          to={`single-product.html/${product.id}`}
+                          className="cart-btn"
+                        >
                           <i className="fal fa-shopping-cart"></i>
                         </Link>
-                        <Link to="wishlist.html" className="cart-btn">
+                        <Link
+                          to={`wishlist.html?id=${product.id}`}
+                          className="cart-btn"
+                        >
                           <i className="fal fa-heart"></i>
                         </Link>
                       </div>
@@ -140,3 +135,4 @@ export const Trending = () => {
     )
   );
 };
+export default Trending;

@@ -21,7 +21,7 @@ const quickLinks = [
   { text: "Contact", link: "contact.html" },
 ];
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="axil-footer-area footer-style-2">
       <div className="footer-top separator-top">
@@ -181,3 +181,4 @@ export const Footer = () => {
     </footer>
   );
 };
+export default Footer;

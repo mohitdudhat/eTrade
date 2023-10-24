@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import Sal from "sal.js";
-import $ from "jquery"; // Import jQuery
-export const Category = () => {
-  const categories = [
+ const categories = [
     {
       title: "Phones",
       imgSrc: "/assets/images/product/categories/elec-4.png",
@@ -54,72 +50,8 @@ export const Category = () => {
       imgSrc: "/assets/images/product/categories/elec-1.png",
     },
   ];
-
-  const slickSettings = {
-    infinite: true,
-    slidesToShow: 7,
-    slidesToScroll: 7,
-    arrows: true,
-    dots: false,
-    autoplay: false,
-    speed: 1000,
-    prevArrow: (
-      <button class="slide-arrow prev-arrow">
-        <i class="fal fa-long-arrow-left"></i>
-      </button>
-    ),
-    nextArrow: (
-      <button class="slide-arrow next-arrow">
-        <i class="fal fa-long-arrow-right"></i>
-      </button>
-    ),
-    responsive: [
-      {
-        breakpoint: 1199,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 6,
-        },
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 479,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-  useEffect(() => {
-    setTimeout(() => {
-      Sal({
-        threshold: 0.3,
-        once: true,
-      });
-    }, 300);
-  }, []);
-
+const Category = () => {
+ 
   return (
     <div className="axil-categorie-area bg-color-white axil-section-gapcommon">
       <div className="container">
@@ -129,9 +61,8 @@ export const Category = () => {
           </span>
           <h2 className="title">Browse by Category</h2>
         </div>
-        <Slider
+        <div
           className="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide"
-          {...slickSettings}
         >
           {categories.map((category, index) => (
             <div key={index}>
@@ -152,8 +83,9 @@ export const Category = () => {
               </div>
             </div>
           ))}
-        </Slider>
+        </div>
       </div>
     </div>
   );
 };
+export default Category;

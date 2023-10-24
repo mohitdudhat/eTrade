@@ -1,13 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
-import Slider from "react-slick";
+import React from "react";
 import { Link } from "react-router-dom";
-import $ from "jquery";
-import Sal from "sal.js";
-import "sal.js/dist/sal.css";
-export const Banner = () => {
-  // Create an array of product items with author information
-  const productItems = [
+const productItems = [
     {
       title: "Roco Wireless Headphone",
       imageSrc: "assets/images/product/product-38.png",
@@ -52,47 +45,8 @@ export const Banner = () => {
         "assets/images/others/author4.png",
       ],
     },
-    // Add more items as needed
   ];
-
-  const [sliderContent, setSliderContent] = useState(null);
-  const [sliderThumb, setSliderThumb] = useState(null);
-
-  const slickSettings = {
-    infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: true,
-    focusOnSelect: false,
-    speed: 1000,
-    autoplay: false,
-    asNavFor: ".slider-content-activation-one",
-    prevArrow: (
-      <button className="slide-arrow prev-arrow">
-        <i className="fal fa-long-arrow-left"></i>
-      </button>
-    ),
-    nextArrow: (
-      <button className="slide-arrow next-arrow">
-        <i className="fal fa-long-arrow-right"></i>
-      </button>
-    ),
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-
-  useEffect(() => {
-  
-  }, []);
-
+const Banner = () => {  
   return (
     <div className="axil-main-slider-area main-slider-style-1">
       <div className="container">
@@ -100,10 +54,7 @@ export const Banner = () => {
           <div className="col-lg-5 col-sm-6">
             <div className="main-slider-content">
               <div className="slider-content-activation-one">
-                {/* <Slider
-                  ref={(slider) => setSliderContent(slider)}
-                  {...slickSettings2}
-                > */}
+                
                 {productItems.map((item, index) => (
                   <div
                     key={index}
@@ -151,17 +102,13 @@ export const Banner = () => {
                     </div>
                   </div>
                 ))}
-                {/* </Slider> */}
               </div>
             </div>
           </div>
           <div className="col-lg-7 col-sm-6">
             <div className="main-slider-large-thumb">
               <div className="slider-thumb-activation-one axil-slick-dots">
-                {/* <Slider
-                  ref={(slider) => setSliderThumb(slider)}
-                  {...slickSettings}
-                > */}
+               
                 {productItems.map((item, index) => (
                   <div
                     key={index}
@@ -177,7 +124,6 @@ export const Banner = () => {
                     </div>
                   </div>
                 ))}
-                {/* </Slider> */}
               </div>
             </div>
           </div>
@@ -194,3 +140,4 @@ export const Banner = () => {
     </div>
   );
 };
+export default Banner;

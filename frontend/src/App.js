@@ -1,24 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 
-import { Banner } from "./Components/Banner";
-import { Category } from "./Components/Category";
-import { Poster } from "./Components/Poster";
-import { Explore } from "./Components/Explore";
-import { Testimonial } from "./Components/Testimonial";
-import { Arrival } from "./Components/Arrival";
-import { Trending } from "./Components/Trending";
-import { Axil } from "./Components/Axil";
-import { NewLetter } from "./Components/NewLetter";
-import { Footer } from "./Components/Footer";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Banner from "./Components/Banner";
+import Category from "./Components/Category";
+import Poster from "./Components/Poster";
+import Explore from "./Components/Explore";
+import Testimonial from "./Components/Testimonial";
+import Arrival from "./Components/Arrival";
+import Trending from "./Components/Trending";
+import Axil from "./Components/Axil";
+import NewsLetter from "./Components/NewsLetter";
+import Service from "./Components/Service";
+import WhyChoose from "./Components/WhyChoose";
 import { ProductModal } from "./Components/ProductModal";
-import { Service } from "./Components/Service";
 import { SearchModal } from "./Components/SearchModal";
 import { Cart } from "./Components/Cart";
 import { OfferModal } from "./Components/OfferModal";
-import { WhyChoose } from "./Components/WhyChoose";
 import { OfferSlider } from "./Components/OfferSlider";
-import Header from "./Components/Header";
 import Breadcrumb from "./Components/BreadCrumb";
 import { ShopArea } from "./Components/ShopArea";
 import { SingleProduct } from "./Components/SingleProduct";
@@ -44,9 +43,10 @@ import { Helmet } from "react-helmet";
 import { useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { Audio } from "react-loader-spinner";
+import Home from "./Components/Home";
 function App() {
   const [progress, setProgress] = useState(0);
-
+  const [render, setRender] = useState(false);
   useEffect(() => {
     const loadScript = (src, callback) => {
       const script = document.createElement("script");
@@ -92,13 +92,25 @@ function App() {
       loadScripts(0);
       $(".slider").not(".slick-initialized").slick();
     }, 1000);
-  }, []);
+    return () => {
+      scriptSources.forEach((src) => {
+        const scriptElement = document.querySelector(`script[src="${src}"]`);
+        if (scriptElement) {
+          scriptElement.remove();
+        }
+      });
+    };
+  }, [render]);
+
   return (
     <div>
       <LoadingBar
         color="#f11946"
         progress={progress}
-        onLoaderFinished={() => setProgress(100)}
+        onLoaderFinished={() => {
+          setProgress(100);
+          setRender(!render);
+        }}
       />
       <button onClick={() => setProgress(progress + 10)}>Add 10%</button>
       <button onClick={() => setProgress(progress + 20)}>Add 20%</button>
@@ -117,32 +129,8 @@ function App() {
       ) && (
         <BrowserRouter>
           <Routes>
+            <Route index path="/" element={<Home />} />
             <Route
-              path="/"
-              element={
-                <>
-                  <Header TopCampaign={true} style={1} />
-                  <Banner />
-
-                  {/* <Category />
-
-                  <Poster />
-
-                  <Explore />
-
-                  <Testimonial />
-
-                  <Arrival />
-                  <Trending />
-                  <WhyChoose />
-                  <Axil />
-                  <NewLetter />
-                  <Service />
-                  <Footer /> */}
-                </>
-              }
-            />
-            {/* <Route
               path="/shop.html"
               element={
                 <>
@@ -152,7 +140,7 @@ function App() {
                     Title="Explore All Products"
                   />
                   <ShopArea />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </>
@@ -165,7 +153,7 @@ function App() {
                   <Header />
                   <SingleProduct />
                   <Recents />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </>
@@ -177,7 +165,7 @@ function App() {
                 <>
                   <Header />
                   <YourCart />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </>
@@ -276,7 +264,7 @@ function App() {
                   <About />
                   <Team />
                   <AboutFeatures />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </div>
@@ -292,7 +280,7 @@ function App() {
                     Title="Explore All Products"
                   />
                   <MyAccount />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </div>
@@ -308,15 +296,16 @@ function App() {
                     Title="Contact With Us"
                   />
                   <ContactForm />
-                  <NewLetter />
+                  <NewsLetter />
                   <Service />
                   <Footer />
                 </div>
               }
-            /> */}
+            />
           </Routes>
         </BrowserRouter>
       )}
+      {/* <Footer /> */}
     </div>
   );
 }

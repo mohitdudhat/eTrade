@@ -17,7 +17,7 @@ export const AuthForm = ({ isSignIn }) => {
         type="text"
         className="form-control"
         name="username"
-        defaultValue="anniemario"
+        placeholder="anniemario"
         value={formData.username}
         onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       />
@@ -153,7 +153,7 @@ export const AuthForm = ({ isSignIn }) => {
                   className="form-control"
                   name="email"
                   value={formData.email}
-                  defaultValue="annie@example.com"
+                  placeholder="annie@example.com"
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
@@ -163,9 +163,9 @@ export const AuthForm = ({ isSignIn }) => {
                 <label>Password</label>
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control fs-5 fw-lighter"
                   name="password"
-                  defaultValue="123456789"
+                  placeholder="●●●●●●●●●●"
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 export const ShopArea = () => {
   const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const categoryParam = queryParams.get("category");
+  const queryParams = new URLSearchParams(location.search);
+  const categoryParam = queryParams.get("category");
   const [productData, setProductData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(
     categoryParam || false
@@ -143,30 +142,30 @@ export const ShopArea = () => {
               <div key={product.id} className="col-xl-3 col-lg-4 col-sm-6">
                 <div className="axil-product product-style-one has-color-pick mt--40">
                   <div className="thumbnail">
-                    <a href="single-product.html">
+                    <Link to="single-product.html">
                       <img src={product.thumbnail} alt="Product Images" />
-                    </a>
+                    </Link>
                     <div className="label-block label-right">
                       <div className="product-badget">20% OFF</div>
                     </div>
                     <div className="product-hover-action">
                       <ul className="cart-action">
                         <li className="wishlist">
-                          <a href="wishlist.html">
+                          <Link to={`wishlist.html?id=${product.id}`}>
                             <i className="far fa-heart"></i>
-                          </a>
+                          </Link>
                         </li>
                         <li className="select-option">
-                          <a href="cart.html">Add to Cart</a>
+                          <Link to="cart.html">Add to Cart</Link>
                         </li>
                         <li className="quickview">
-                          <a
-                            href="/"
+                          <Link
+                            to="/"
                             data-bs-toggle="modal"
                             data-bs-target="/quick-view-modal"
                           >
                             <i className="far fa-eye"></i>
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -174,7 +173,9 @@ export const ShopArea = () => {
                   <div className="product-content">
                     <div className="inner">
                       <h5 className="title">
-                        <a href="single-product.html">{product.productTitle}</a>
+                        <Link to="single-product.html">
+                          {product.productTitle}
+                        </Link>
                       </h5>
                       <div className="product-price-variant">
                         <span className="price current-price">
@@ -210,9 +211,9 @@ export const ShopArea = () => {
             ))}
           </div>
           <div className="text-center pt--30">
-            <a href="/" className="axil-btn btn-bg-lighter btn-load-more">
+            <Link to="/" className="axil-btn btn-bg-lighter btn-load-more">
               Load more
-            </a>
+            </Link>
           </div>
         </div>
       </div>

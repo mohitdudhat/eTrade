@@ -16,7 +16,7 @@ const posters = [
   },
 ];
 
-export const Axil = () => {
+const Axil = () => {
   return (
     <div className="axil-poster">
       <div className="container">
@@ -43,3 +43,4 @@ export const Axil = () => {
     </div>
   );
 };
+export default Axil;

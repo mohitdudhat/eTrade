@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Poster = () => {
+const Poster = () => {
   return (
     <div className="axil-poster-countdown">
       <div className="container">
@@ -27,7 +27,7 @@ export const Poster = () => {
                   src="assets/images/product/poster/poster-03.png"
                   alt="Poster Product"
                 />
-                <div className="music-signal">
+                <div className="music-singnal">
                   {[1, 2, 3, 4, 5].map((circle) => (
                     <div
                       key={circle}
@@ -43,3 +43,4 @@ export const Poster = () => {
     </div>
   );
 };
+export default Poster;

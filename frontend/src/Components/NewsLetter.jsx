@@ -8,7 +8,7 @@ const newsletterData = {
   buttonText: "Subscribe",
 };
 
-export const NewLetter = () => {
+const NewsLetter = () => {
   return (
     <div className="axil-newsletter-area axil-section-gap pt--0">
       <div className="container">
@@ -35,3 +35,4 @@ export const NewLetter = () => {
     </div>
   );
 };
+export default NewsLetter;

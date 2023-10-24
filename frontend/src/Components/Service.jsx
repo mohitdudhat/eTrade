@@ -23,7 +23,7 @@ const serviceItems = [
   },
 ];
 
-export const Service = () => {
+const Service = () => {
   return (
     <div className="service-area">
       <div className="container">
@@ -46,3 +46,4 @@ export const Service = () => {
     </div>
   );
 };
+export default Service;

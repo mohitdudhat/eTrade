@@ -37,37 +37,27 @@ export const YourCart = () => {
       quantity: 1,
     };
 
-    // Retrieve user_id and user_data
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-    // Fetch the user's data
     axios
       .get(`http://localhost:3001/users_data?user_id=${user_id}`)
       .then((response) => {
         const user_data = response.data[0];
-        console.log(user_data);
-
-        // Check if the product is already in the cart
         const existingCartItem = user_data.cart.find(
           (item) => item.product_id === id
         );
 
         if (existingCartItem) {
-          // If the product is in the cart, increase its quantity by one
           existingCartItem.quantity += 1;
         } else {
-          // If the product is not in the cart, add it as a new item
           user_data.cart.push(newCartItem);
         }
-
-        console.log(user_data);
         cartProducts(user_data);
         setusers_data(user_data);
 
-        // Send a PUT request to update the user's data
         axios
           .put(`http://localhost:3001/users_data/${user_data.id}`, user_data)
           .then((response) => {
-            console.log("Item added from the cart.");
+            alert("Item added from the cart.");
           })
           .catch((error) => {
             console.error("Error updating user data:", error);
@@ -86,9 +76,7 @@ export const YourCart = () => {
     axios
       .get(`http://localhost:3001/products?${productIdsString}`)
       .then((response) => {
-        // Handle the response data here
         const productData = response.data;
-        console.log(productData);
         setCart(productData);
       })
       .catch((error) => {
@@ -96,7 +84,6 @@ export const YourCart = () => {
       });
   };
   useEffect(() => {
-    console.log(productParam);
     axios
       .get(
         `http://localhost:3001/users_data?user_id=${JSON.parse(
@@ -277,7 +264,7 @@ export const YourCart = () => {
                                 type="radio"
                                 id="radio1"
                                 name="shipping"
-                                checked
+                                defaultChecked
                               />
                               <label htmlFor="radio1">Free Shipping</label>
                             </div>
@@ -310,7 +297,7 @@ export const YourCart = () => {
                                     )["quantity"],
                                 0
                               ) + 8.0
-                            ).toFixed(2)}
+                            ).toFixed(2) || 0}
                           </td>
                         </tr>
                       </tbody>

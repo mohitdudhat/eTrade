@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Sal from "sal.js";
-import "sal.js/dist/sal.css";
-export const Explore = () => {
+import { Link } from "react-router-dom";
+const Explore = () => {
   const [productData, setProductData] = useState([]);
-  Sal();
-
-  useEffect(() => {
+  const fetchAllProduct = () => {
     axios
       .get(`http://localhost:3001/products`)
       .then((response) => {
-        console.log(response.data);
         setProductData(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-    console.log(productData);
+  };
+  useEffect(() => {
+    fetchAllProduct();
   }, []);
 
   return (
@@ -39,7 +37,7 @@ export const Explore = () => {
                   >
                     <div className="axil-product product-style-one">
                       <div className="thumbnail">
-                        <a href={`single-product.html/${product.id}`}>
+                        <Link to={`single-product.html/${product.id}`}>
                           <img
                             data-sal="zoom-out"
                             data-sal-delay="200"
@@ -49,30 +47,30 @@ export const Explore = () => {
                             src={product.thumbnail}
                             alt="Product Images"
                           />
-                        </a>
+                        </Link>
                         <div className="label-block label-right">
                           <div className="product-badget">20% Off</div>
                         </div>
                         <div className="product-hover-action">
                           <ul className="cart-action">
                             <li className="quickview">
-                              <a
-                                href="#"
+                              <Link
+                                to="/"
                                 data-bs-toggle="modal"
                                 data-bs-target="#quick-view-modal"
                               >
                                 <i className="far fa-eye"></i>
-                              </a>
+                              </Link>
                             </li>
                             <li className="select-option">
-                              <a href={`cart.html?id=${product.id}`}>
+                              <Link to={`single-product.html/${product.id}`}>
                                 Add to Cart
-                              </a>
+                              </Link>
                             </li>
                             <li className="wishlist">
-                              <a href={`wishlist.html?id=${product.id}`}>
+                              <Link to={`wishlist.html?id=${product.id}`}>
                                 <i className="far fa-heart"></i>
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                         </div>
@@ -93,16 +91,16 @@ export const Explore = () => {
                             </span>
                           </div>
                           <h5 className="title">
-                            <a href="single-product.html">
+                            <Link to="single-product.html">
                               {product.productTitle}
-                            </a>
+                            </Link>
                           </h5>
                           <div className="product-price-variant">
                             <span className="price current-price">
-                              {product.price}
+                              ${product.price}{" "}
                             </span>
                             <span className="price old-price">
-                              {product.oldPrice}
+                              ${product.oldPrice}
                             </span>
                           </div>
                         </div>
@@ -115,12 +113,12 @@ export const Explore = () => {
           </div>
           <div className="row">
             <div className="col-lg-12 text-center mt--20 mt_sm--0">
-              <a
-                href="shop.html"
+              <Link
+                to="shop.html"
                 className="axil-btn btn-bg-lighter btn-load-more"
               >
                 View All Products
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -128,3 +126,4 @@ export const Explore = () => {
     )
   );
 };
+export default Explore;

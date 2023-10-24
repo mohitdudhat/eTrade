@@ -1,6 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
-
 const testimonialData = [
   {
     text: "It’s amazing how much easier it has been to meet new people and create instantly non connections. I have the exact same personal; the only thing that has changed is my mindset and a few behaviors.",
@@ -26,17 +24,8 @@ const testimonialData = [
     designation: "Another Designation",
     title: "Another Name",
   },
-  // Add more testimonial data objects here
 ];
-
-export const Testimonial = () => {
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3, // Number of slides to show at a time
-    slidesToScroll: 1,
-  };
-
+const Testimonial = () => {
   return (
     <div className="axil-testimoial-area axil-section-gap bg-vista-white">
       <div className="container">
@@ -46,7 +35,7 @@ export const Testimonial = () => {
           </span>
           <h2 className="title">Users Feedback</h2>
         </div>
-        <Slider {...settings}>
+        <div className="testimonial-slick-activation testimonial-style-one-wrapper slick-layout-wrapper--20 axil-slick-arrow arrow-top-slide">
           {testimonialData.map((testimonial, index) => (
             <div
               key={index}
@@ -66,8 +55,9 @@ export const Testimonial = () => {
               </div>
             </div>
           ))}
-        </Slider>
+        </div>
       </div>
     </div>
   );
 };
+export default Testimonial;

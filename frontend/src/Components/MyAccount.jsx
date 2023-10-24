@@ -17,7 +17,6 @@ export const MyAccount = () => {
         userData?.accountDetails?.countryRegion || "United Kingdom (UK)",
     });
   }, [userData]);
-  // Create arrays for orders and addresses
   const orders = [
     {
       orderNumber: "#6523",

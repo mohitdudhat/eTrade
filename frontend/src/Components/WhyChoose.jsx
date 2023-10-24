@@ -23,7 +23,7 @@ const serviceItems = [
   },
 ];
 
-export const WhyChoose = () => {
+const WhyChoose = () => {
   return (
     <div className="axil-why-choose-area pb--50 pb_sm--30">
       <div className="container">
@@ -49,3 +49,4 @@ export const WhyChoose = () => {
     </div>
   );
 };
+export default WhyChoose;
