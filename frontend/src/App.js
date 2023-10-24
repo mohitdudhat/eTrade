@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Sal from "sal.js";
 
 import { Banner } from "./Components/Banner";
 import { Category } from "./Components/Category";
@@ -41,214 +40,283 @@ import { Recents } from "./Components/Recents";
 import { useEffect, useState } from "react";
 import $ from "jquery";
 import "slick-carousel"; // Import the Slider component from react-slick
-import sal from "sal.js";
 import { Helmet } from "react-helmet";
 import { useRef } from "react";
-
+import LoadingBar from "react-top-loading-bar";
+import { Audio } from "react-loader-spinner";
 function App() {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
+    const loadScript = (src, callback) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.defer = true;
+      script.onload = callback;
+      document.head.appendChild(script);
+    };
+
+    // List of script sources to load
+    const scriptSources = [
+      "/assets/js/vendor/modernizr.min.js",
+      "/assets/js/vendor/jquery.js",
+      "/assets/js/vendor/popper.min.js",
+      "/assets/js/vendor/bootstrap.min.js",
+      "/assets/js/vendor/slick.min.js",
+      "/assets/js/vendor/js.cookie.js",
+      "/assets/js/vendor/jquery-ui.min.js",
+      "/assets/js/vendor/jquery.ui.touch-punch.min.js",
+      "/assets/js/vendor/jquery.countdown.min.js",
+      "/assets/js/vendor/sal.js",
+      "/assets/js/vendor/jquery.magnific-popup.min.js",
+      "/assets/js/vendor/imagesloaded.pkgd.min.js",
+      "/assets/js/vendor/isotope.pkgd.min.js",
+      "/assets/js/vendor/counterup.js",
+      "/assets/js/vendor/waypoints.min.js",
+      "/assets/js/main.js",
+    ];
+
+    // Load each script in sequence
+    const loadScripts = (index) => {
+      if (index < scriptSources.length) {
+        loadScript(scriptSources[index], () => loadScripts(index + 1));
+      }
+    };
+
+    // Start loading scripts
+    setProgress(progress + 10);
+    setProgress(progress + 20);
+    setProgress(progress + 30);
+    setProgress(90);
     setTimeout(() => {
-      sal({
-        threshold: 0.3,
-        once: true,
-      });
-    }, 500);
+      loadScripts(0);
+      $(".slider").not(".slick-initialized").slick();
+    }, 1000);
   }, []);
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header TopCampaign={true} style={1} />
-                <Banner />
-                <Category />
-                <Poster />
-                <Explore />
-                <Testimonial />
-                <Arrival />
-                <Trending />
-                <WhyChoose />
-                <Axil />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/shop.html"
-            element={
-              <>
-                <Header />
-                <Breadcrumb
-                  currentLocation="Shop"
-                  Title="Explore All Products"
-                />
-                <ShopArea />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/single-product.html/:id"
-            element={
-              <>
-                <Header />
-                <SingleProduct />
-                <Recents />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/cart.html"
-            element={
-              <>
-                <Header />
-                <YourCart />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/wishlist.html"
-            element={
-              <>
-                <Header />
-                <YourWishList />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/checkout.html"
-            element={
-              <>
-                <Header />
-                <Checkout />
-                <Service />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/sign-in.html"
-            element={
-              <>
-                <AuthHeader page="sign-in" />
-                <AuthForm isSignIn={true} />
-              </>
-            }
-          />
-          <Route
-            path="/sign-up.html"
-            element={
-              <>
-                <AuthHeader />
-                <AuthForm />
-              </>
-            }
-          />
-          <Route
-            path="/reset-password.html"
-            element={
-              <div className="axil-signin-area">
-                <AuthHeader />
-                <ResetForm />
-              </div>
-            }
-          />
-          <Route
-            path="/forgot-password.html"
-            element={
-              <div className="axil-signin-area">
-                <AuthHeader />
-                <ForgotPasswordForm />
-              </div>
-            }
-          />
-          <Route
-            path="/privacy-policy.html"
-            element={
-              <div>
-                <Header />
-                <Breadcrumb currentLocation="Pages" Title="Privacy Policy" />
-                <PrivacyPolicy />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="/error-page.html"
-            element={
-              <div>
-                <Header />
-                <ErrorPage />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="/about-us.html"
-            element={
-              <div>
-                <Header />
-                <Breadcrumb
-                  currentLocation="About Us"
-                  Title="About Our Store"
-                />
-                <About />
-                <Team />
-                <AboutFeatures />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="/my-account.html"
-            element={
-              <div>
-                <Header />
-                <Breadcrumb
-                  currentLocation="My Account"
-                  Title="Explore All Products"
-                />
-                <MyAccount />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="/contact.html"
-            element={
-              <div>
-                <Header />
-                <Breadcrumb currentLocation="Contact" Title="Contact With Us" />
-                <ContactForm />
-                <NewLetter />
-                <Service />
-                <Footer />
-              </div>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        onLoaderFinished={() => setProgress(100)}
+      />
+      <button onClick={() => setProgress(progress + 10)}>Add 10%</button>
+      <button onClick={() => setProgress(progress + 20)}>Add 20%</button>
+      <button onClick={() => setProgress(100)}>Complete</button>
+      <br />
+      {(
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="green"
+          ariaLabel="three-dots-loading"
+          wrapperStyle
+          wrapperClass
+        />
+      ) && (
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header TopCampaign={true} style={1} />
+                  <Banner />
+
+                  {/* <Category />
+
+                  <Poster />
+
+                  <Explore />
+
+                  <Testimonial />
+
+                  <Arrival />
+                  <Trending />
+                  <WhyChoose />
+                  <Axil />
+                  <NewLetter />
+                  <Service />
+                  <Footer /> */}
+                </>
+              }
+            />
+            {/* <Route
+              path="/shop.html"
+              element={
+                <>
+                  <Header />
+                  <Breadcrumb
+                    currentLocation="Shop"
+                    Title="Explore All Products"
+                  />
+                  <ShopArea />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/single-product.html/:id"
+              element={
+                <>
+                  <Header />
+                  <SingleProduct />
+                  <Recents />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/cart.html"
+              element={
+                <>
+                  <Header />
+                  <YourCart />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/wishlist.html"
+              element={
+                <>
+                  <Header />
+                  <YourWishList />
+                  <Service />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/checkout.html"
+              element={
+                <>
+                  <Header />
+                  <Checkout />
+                  <Service />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/sign-in.html"
+              element={
+                <>
+                  <AuthHeader page="sign-in" />
+                  <AuthForm isSignIn={true} />
+                </>
+              }
+            />
+            <Route
+              path="/sign-up.html"
+              element={
+                <>
+                  <AuthHeader />
+                  <AuthForm />
+                </>
+              }
+            />
+            <Route
+              path="/reset-password.html"
+              element={
+                <div className="axil-signin-area">
+                  <AuthHeader />
+                  <ResetForm />
+                </div>
+              }
+            />
+            <Route
+              path="/forgot-password.html"
+              element={
+                <div className="axil-signin-area">
+                  <AuthHeader />
+                  <ForgotPasswordForm />
+                </div>
+              }
+            />
+            <Route
+              path="/privacy-policy.html"
+              element={
+                <div>
+                  <Header />
+                  <Breadcrumb currentLocation="Pages" Title="Privacy Policy" />
+                  <PrivacyPolicy />
+                  <Service />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/error-page.html"
+              element={
+                <div>
+                  <Header />
+                  <ErrorPage />
+                  <Service />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/about-us.html"
+              element={
+                <div>
+                  <Header />
+                  <Breadcrumb
+                    currentLocation="About Us"
+                    Title="About Our Store"
+                  />
+                  <About />
+                  <Team />
+                  <AboutFeatures />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/my-account.html"
+              element={
+                <div>
+                  <Header />
+                  <Breadcrumb
+                    currentLocation="My Account"
+                    Title="Explore All Products"
+                  />
+                  <MyAccount />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/contact.html"
+              element={
+                <div>
+                  <Header />
+                  <Breadcrumb
+                    currentLocation="Contact"
+                    Title="Contact With Us"
+                  />
+                  <ContactForm />
+                  <NewLetter />
+                  <Service />
+                  <Footer />
+                </div>
+              }
+            /> */}
+          </Routes>
+        </BrowserRouter>
+      )}
     </div>
   );
 }

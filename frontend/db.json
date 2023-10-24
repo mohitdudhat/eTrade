@@ -709,8 +709,8 @@
       "id": 2
     },
     {
-      "username": "a",
       "email": "a",
+      "username": "A",
       "password": "a",
       "id": 3
     },
@@ -796,7 +796,7 @@
         },
         {
           "product_id": 0,
-          "quantity": 1
+          "quantity": 53
         }
       ],
       "wishlist": [

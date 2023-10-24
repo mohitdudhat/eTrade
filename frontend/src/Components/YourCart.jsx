@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import $ from "jquery";
 export const YourCart = () => {
   const [cartItems, setCartItems] = useState([
     {
@@ -207,11 +208,12 @@ export const YourCart = () => {
                           <input
                             type="number"
                             className="quantity-input"
-                            value={
+                            defaultValue={
                               users_data.cart.find(
                                 (cartItems) => cartItems.product_id === item.id
                               )["quantity"]
                             }
+                            onChange={() => console.log("ok")}
                           />
                         </div>
                       </td>

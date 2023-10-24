@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Slider from "react-slick";
-import Sal from "sal.js";
-import "sal.js/dist/sal.css";
 import { Link } from "react-router-dom";
 import $ from "jquery";
-
+import Sal from "sal.js";
+import "sal.js/dist/sal.css";
 export const Banner = () => {
   // Create an array of product items with author information
   const productItems = [
@@ -88,25 +87,10 @@ export const Banner = () => {
       },
     ],
   };
-  const slickSettings2 = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: false,
-    focusOnSelect: false,
-    speed: 500,
-    fade: true,
-    autoplay: false,
-    asNavFor: ".slider-thumb-activation-one",
-  };
+
 
   useEffect(() => {
-    Sal();
-    if (sliderThumb && sliderContent) {
-      sliderThumb.slick(slickSettings);
-      sliderContent.slick(slickSettings2);
-    }
+  
   }, []);
 
   return (
@@ -116,84 +100,84 @@ export const Banner = () => {
           <div className="col-lg-5 col-sm-6">
             <div className="main-slider-content">
               <div className="slider-content-activation-one">
-                <Slider
+                {/* <Slider
                   ref={(slider) => setSliderContent(slider)}
                   {...slickSettings2}
-                >
-                  {productItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="single-slide"
-                      data-sal="slide-up"
-                      data-sal-delay="400"
-                      data-sal-duration="800"
-                    >
-                      <span className="subtitle">
-                        <i className="fas fa-fire"></i> Hot Deal In This Week
-                      </span>
-                      <h1 className="title">{item.title}</h1>
-                      <div className="slide-action">
-                        <div className="shop-btn">
-                          <Link
-                            to="shop.html"
-                            className="axil-btn btn-bg-white"
-                          >
-                            <i className="fal fa-shopping-cart"></i> Shop Now
-                          </Link>
+                > */}
+                {productItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="single-slide slick-slide"
+                    data-sal="slide-up"
+                    data-sal-delay="400"
+                    data-sal-duration="800"
+                  >
+                    <span className="subtitle">
+                      <i className="fas fa-fire"></i> Hot Deal In This Week
+                    </span>
+                    <h1 className="title">{item.title}</h1>
+                    <div className="slide-action">
+                      <div className="shop-btn">
+                        <Link to="shop.html" className="axil-btn btn-bg-white">
+                          <i className="fal fa-shopping-cart"></i> Shop Now
+                        </Link>
+                      </div>
+                      <div className="item-rating">
+                        <div className="thumb">
+                          <ul>
+                            {item.authors.map((author, authorIndex) => (
+                              <li key={authorIndex}>
+                                <img
+                                  src={author}
+                                  alt={`Author ${authorIndex + 1}`}
+                                />
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                        <div className="item-rating">
-                          <div className="thumb">
-                            <ul>
-                              {item.authors.map((author, authorIndex) => (
-                                <li key={authorIndex}>
-                                  <img
-                                    src={author}
-                                    alt={`Author ${authorIndex + 1}`}
-                                  />
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="content">
-                            <span className="rating-icon">
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fal fa-star"></i>
-                            </span>
-                            <span className="review-text">
-                              <span>100+</span> Reviews
-                            </span>
-                          </div>
+                        <div className="content">
+                          <span className="rating-icon">
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fal fa-star"></i>
+                          </span>
+                          <span className="review-text">
+                            <span>100+</span> Reviews
+                          </span>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </Slider>
+                  </div>
+                ))}
+                {/* </Slider> */}
               </div>
             </div>
           </div>
           <div className="col-lg-7 col-sm-6">
             <div className="main-slider-large-thumb">
               <div className="slider-thumb-activation-one axil-slick-dots">
-                <Slider ref={(slider) => setSliderThumb(slider)}{...slickSettings}>
-                  {productItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="single-slide"
-                      data-sal="slide-up"
-                      data-sal-delay="600"
-                      data-sal-duration="1500"
-                    >
-                      <img src={item.imageSrc} alt="Product" />
-                      <div className="product-price">
-                        <span className="text">From</span>
-                        <span className="price-amount">{item.price}</span>
-                      </div>
+                {/* <Slider
+                  ref={(slider) => setSliderThumb(slider)}
+                  {...slickSettings}
+                > */}
+                {productItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="single-slide slick-slide"
+                    data-sal="slide-up"
+                    data-sal-delay="600"
+                    data-sal-duration="1500"
+                  >
+                    <img src={item.imageSrc} alt="Product" />
+                    <div className="product-price">
+                      <span className="text">From</span>
+                      <span className="price-amount">{item.price}</span>
                     </div>
-                  ))}
-                </Slider>
+                  </div>
+                ))}
+                {/* </Slider> */}
               </div>
             </div>
           </div>

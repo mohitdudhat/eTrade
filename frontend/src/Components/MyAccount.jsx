@@ -154,7 +154,11 @@ export const MyAccount = () => {
                       >
                         <i className="fas fa-user"></i>Account Details
                       </a>
-                      <a className="nav-item nav-link" href="sign-in.html">
+                      <a
+                        className="nav-item nav-link"
+                        href="sign-in.html"
+                        onClick={() => localStorage.clear()}
+                      >
                         <i className="fal fa-sign-out"></i> Logout
                       </a>
                     </div>

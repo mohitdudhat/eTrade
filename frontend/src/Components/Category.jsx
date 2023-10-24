@@ -124,7 +124,7 @@ export const Category = () => {
     <div className="axil-categorie-area bg-color-white axil-section-gapcommon">
       <div className="container">
         <div className="section-title-wrapper">
-          <span claasName="title-highlighter highlighter-secondary">
+          <span className="title-highlighter highlighter-secondary">
             <i className="far fa-tags"></i> Categories
           </span>
           <h2 className="title">Browse by Category</h2>
