@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
-export const ShopArea = () => {
+const ShopArea = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const categoryParam = queryParams.get("category");
@@ -151,12 +151,14 @@ export const ShopArea = () => {
                     <div className="product-hover-action">
                       <ul className="cart-action">
                         <li className="wishlist">
-                          <Link to={`wishlist.html?id=${product.id}`}>
+                          <Link to={`/wishlist.html?id=${product.id}`}>
                             <i className="far fa-heart"></i>
                           </Link>
                         </li>
                         <li className="select-option">
-                          <Link to="cart.html">Add to Cart</Link>
+                          <Link to={`/single-product.html/${product.id}`}>
+                            Add to Cart
+                          </Link>
                         </li>
                         <li className="quickview">
                           <Link
@@ -173,7 +175,9 @@ export const ShopArea = () => {
                   <div className="product-content">
                     <div className="inner">
                       <h5 className="title">
-                        <Link to="single-product.html">
+                        <Link
+                          to={`/single-product.html/${product.productTitle}`}
+                        >
                           {product.productTitle}
                         </Link>
                       </h5>
@@ -220,3 +224,4 @@ export const ShopArea = () => {
     )
   );
 };
+export default ShopArea;

@@ -2,40 +2,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import Banner from "./Components/Banner";
-import Category from "./Components/Category";
-import Poster from "./Components/Poster";
-import Explore from "./Components/Explore";
-import Testimonial from "./Components/Testimonial";
-import Arrival from "./Components/Arrival";
-import Trending from "./Components/Trending";
-import Axil from "./Components/Axil";
 import NewsLetter from "./Components/NewsLetter";
 import Service from "./Components/Service";
-import WhyChoose from "./Components/WhyChoose";
-import { ProductModal } from "./Components/ProductModal";
-import { SearchModal } from "./Components/SearchModal";
-import { Cart } from "./Components/Cart";
-import { OfferModal } from "./Components/OfferModal";
-import { OfferSlider } from "./Components/OfferSlider";
 import Breadcrumb from "./Components/BreadCrumb";
-import { ShopArea } from "./Components/ShopArea";
-import { SingleProduct } from "./Components/SingleProduct";
-import { YourCart } from "./Components/YourCart";
-import { YourWishList } from "./Components/YourWishList";
-import { Checkout } from "./Components/CheckOut";
+
 import { AuthHeader } from "./Components/AuthHeader";
 import { AuthForm } from "./Components/AuthForm";
 import { ForgotPasswordForm } from "./Components/ForgotPasswordForm";
 import { ResetForm } from "./Components/ResetForm";
-import { PrivacyPolicy } from "./Components/PrivacyPolicy";
 import { ErrorPage } from "./Components/ErrorPage";
 import { MyAccount } from "./Components/MyAccount";
 import { About } from "./Components/About";
 import { Team } from "./Components/Team";
 import { AboutFeatures } from "./Components/AboutFeatures";
 import { ContactForm } from "./Components/ContactForm";
-import { Recents } from "./Components/Recents";
 import { useEffect, useState } from "react";
 import $ from "jquery";
 import "slick-carousel"; // Import the Slider component from react-slick
@@ -44,9 +24,20 @@ import { useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { Audio } from "react-loader-spinner";
 import Home from "./Components/Home";
+import Shop from "./Components/Shop";
+import SingleProductPage from "./Components/SingleProductPage";
+import CartPage from "./Components/CartPage";
+import WishlistPage from "./Components/WishlistPage";
+import CheckOutPage from "./Components/CheckOutPage";
+import PrivacyPolicyPage from "./Components/PrivacyPolicyPage";
+import AboutUs from "./Components/AboutUs";
+import MyAccountPage from "./Components/MyAccountPage";
+import ContactPage from "./Components/ContactPage";
+import AdminProduct from "./Components/AdminProduct";
 function App() {
   const [progress, setProgress] = useState(0);
   const [render, setRender] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const loadScript = (src, callback) => {
       const script = document.createElement("script");
@@ -82,25 +73,31 @@ function App() {
         loadScript(scriptSources[index], () => loadScripts(index + 1));
       }
     };
+    $(document).on("turbo:before-cache", function () {
+      const sliders = document.querySelectorAll(".slick-initialized");
 
+      sliders.forEach((item) => {
+        $(item).slick("unslick");
+      });
+    });
     // Start loading scripts
     setProgress(progress + 10);
     setProgress(progress + 20);
     setProgress(progress + 30);
-    setProgress(90);
+    setProgress(100);
     setTimeout(() => {
       loadScripts(0);
-      $(".slider").not(".slick-initialized").slick();
-    }, 1000);
-    return () => {
-      scriptSources.forEach((src) => {
-        const scriptElement = document.querySelector(`script[src="${src}"]`);
-        if (scriptElement) {
-          scriptElement.remove();
-        }
-      });
-    };
-  }, [render]);
+    }, 1500);
+
+    // return () => {
+    //   scriptSources.forEach((src) => {
+    //     const scriptElement = document.querySelector(`script[src="${src}"]`);
+    //     if (scriptElement) {
+    //       scriptElement.remove();
+    //     }
+    //   });
+    // };
+  }, []);
 
   return (
     <div>
@@ -110,89 +107,23 @@ function App() {
         onLoaderFinished={() => {
           setProgress(100);
           setRender(!render);
+          setLoading(true);
         }}
       />
-      <button onClick={() => setProgress(progress + 10)}>Add 10%</button>
-      <button onClick={() => setProgress(progress + 20)}>Add 20%</button>
-      <button onClick={() => setProgress(100)}>Complete</button>
       <br />
-      {(
-        <Audio
-          height="80"
-          width="80"
-          radius="9"
-          color="green"
-          ariaLabel="three-dots-loading"
-          wrapperStyle
-          wrapperClass
-        />
-      ) && (
+      {loading && (
         <BrowserRouter>
           <Routes>
             <Route index path="/" element={<Home />} />
-            <Route
-              path="/shop.html"
-              element={
-                <>
-                  <Header />
-                  <Breadcrumb
-                    currentLocation="Shop"
-                    Title="Explore All Products"
-                  />
-                  <ShopArea />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </>
-              }
-            />
+            <Route path="/admin/product" element={<AdminProduct />} />
+            <Route path="/shop.html" element={<Shop />} />
             <Route
               path="/single-product.html/:id"
-              element={
-                <>
-                  <Header />
-                  <SingleProduct />
-                  <Recents />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </>
-              }
+              element={<SingleProductPage />}
             />
-            <Route
-              path="/cart.html"
-              element={
-                <>
-                  <Header />
-                  <YourCart />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/wishlist.html"
-              element={
-                <>
-                  <Header />
-                  <YourWishList />
-                  <Service />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/checkout.html"
-              element={
-                <>
-                  <Header />
-                  <Checkout />
-                  <Service />
-                  <Footer />
-                </>
-              }
-            />
+            <Route path="/cart.html" element={<CartPage />} />
+            <Route path="/wishlist.html" element={<WishlistPage />} />
+            <Route path="/checkout.html" element={<CheckOutPage />} />
             <Route
               path="/sign-in.html"
               element={
@@ -231,81 +162,26 @@ function App() {
             />
             <Route
               path="/privacy-policy.html"
-              element={
-                <div>
-                  <Header />
-                  <Breadcrumb currentLocation="Pages" Title="Privacy Policy" />
-                  <PrivacyPolicy />
-                  <Service />
-                  <Footer />
-                </div>
-              }
+              element={<PrivacyPolicyPage />}
             />
             <Route
               path="/error-page.html"
               element={
                 <div>
                   <Header />
+
                   <ErrorPage />
-                  <Service />
                   <Footer />
                 </div>
               }
             />
-            <Route
-              path="/about-us.html"
-              element={
-                <div>
-                  <Header />
-                  <Breadcrumb
-                    currentLocation="About Us"
-                    Title="About Our Store"
-                  />
-                  <About />
-                  <Team />
-                  <AboutFeatures />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </div>
-              }
-            />
-            <Route
-              path="/my-account.html"
-              element={
-                <div>
-                  <Header />
-                  <Breadcrumb
-                    currentLocation="My Account"
-                    Title="Explore All Products"
-                  />
-                  <MyAccount />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </div>
-              }
-            />
-            <Route
-              path="/contact.html"
-              element={
-                <div>
-                  <Header />
-                  <Breadcrumb
-                    currentLocation="Contact"
-                    Title="Contact With Us"
-                  />
-                  <ContactForm />
-                  <NewsLetter />
-                  <Service />
-                  <Footer />
-                </div>
-              }
-            />
+            <Route path="/about-us.html" element={<AboutUs />} />
+            <Route path="/my-account.html" element={<MyAccountPage />} />
+            <Route path="/contact.html" element={<ContactPage />} />
           </Routes>
+          <Service />
         </BrowserRouter>
       )}
-      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import $ from "jquery";
 
-export const Team = () => {
+const Team = () => {
   useEffect(() => {
     $(".team-slide-activation").slick({
       infinite: true,
@@ -102,3 +102,4 @@ export const Team = () => {
     </div>
   );
 };
+export default Team;

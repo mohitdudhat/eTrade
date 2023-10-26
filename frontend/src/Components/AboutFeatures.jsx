@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AboutFeatures = () => {
+const AboutFeatures = () => {
   return (
     <div className="axil-about-area about-style-2" style={{ padding: "80px" }}>
       <div className="container">
@@ -54,3 +54,4 @@ export const AboutFeatures = () => {
     </div>
   );
 };
+export default AboutFeatures;

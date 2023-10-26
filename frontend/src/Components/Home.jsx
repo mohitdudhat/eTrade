@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Banner from "../Components/Banner";
+import Banner from "./Banner";
 import Category from "../Components/Category";
 import Poster from "../Components/Poster";
 import Explore from "../Components/Explore";
@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <Header TopCampaign={true} style={1} />
       <Banner />
-      <Category />
+      {/* <Category />
       <Poster />
       <Explore />
       <Testimonial />
@@ -27,7 +27,7 @@ const Home = () => {
       <Axil />
       <NewsLetter />
       <Service />
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

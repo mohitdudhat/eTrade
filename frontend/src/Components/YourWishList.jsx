@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-export const YourWishList = () => {
+const YourWishList = () => {
   const [wishlist, setWishlist] = useState([]);
   const [user_data, setUser_data] = useState({});
   const location = useLocation();
@@ -185,3 +185,4 @@ export const YourWishList = () => {
     </div>
   );
 };
+export default YourWishList;

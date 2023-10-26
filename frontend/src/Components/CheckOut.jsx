@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-export const Checkout = () => {
+const Checkout = () => {
   const [selectedShippingMethod, setSelectedShippingMethod] =
     useState("Free Shipping");
 
@@ -364,3 +364,4 @@ export const Checkout = () => {
     </div>
   );
 };
+export default Checkout;

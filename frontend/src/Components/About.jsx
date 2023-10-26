@@ -1,6 +1,6 @@
 import React from "react";
 
-export const About = () => {
+const About = () => {
   return (
     <>
       <div className="axil-about-area about-style-1 axil-section-gap">
@@ -99,3 +99,4 @@ export const About = () => {
     </>
   );
 };
+export default About;

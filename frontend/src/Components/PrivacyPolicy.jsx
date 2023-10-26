@@ -1,6 +1,6 @@
 import React from "react";
 
-export const PrivacyPolicy = () => {
+const PrivacyPolicy = () => {
   return (
     <div className="axil-privacy-area axil-section-gap">
       <div className="container">
@@ -168,3 +168,4 @@ export const PrivacyPolicy = () => {
     </div>
   );
 };
+export default PrivacyPolicy;

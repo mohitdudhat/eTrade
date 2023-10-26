@@ -1,52 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const productItems = [
-    {
-      title: "Roco Wireless Headphone",
-      imageSrc: "assets/images/product/product-38.png",
-      price: "$49.00",
-      authors: [
-        "assets/images/others/author1.png",
-        "assets/images/others/author2.png",
-        "assets/images/others/author3.png",
-        "assets/images/others/author4.png",
-      ],
-    },
-    {
-      title: "Smart Digital Watch",
-      imageSrc: "assets/images/product/product-39.png",
-      price: "$49.00",
-      authors: [
-        "assets/images/others/author1.png",
-        "assets/images/others/author2.png",
-        "assets/images/others/author3.png",
-        "assets/images/others/author4.png",
-      ],
-    },
-    {
-      title: "Roco Wireless Headphone",
-      imageSrc: "assets/images/product/product-38.png",
-      price: "$49.00",
-      authors: [
-        "assets/images/others/author1.png",
-        "assets/images/others/author2.png",
-        "assets/images/others/author3.png",
-        "assets/images/others/author4.png",
-      ],
-    },
-    {
-      title: "Smart Digital Watch",
-      imageSrc: "assets/images/product/product-39.png",
-      price: "$49.00",
-      authors: [
-        "assets/images/others/author1.png",
-        "assets/images/others/author2.png",
-        "assets/images/others/author3.png",
-        "assets/images/others/author4.png",
-      ],
-    },
-  ];
-const Banner = () => {  
+  {
+    title: "Roco Wireless Headphone",
+    imageSrc: "assets/images/product/product-38.png",
+    price: "$49.00",
+    authors: [
+      "assets/images/others/author1.png",
+      "assets/images/others/author2.png",
+      "assets/images/others/author3.png",
+      "assets/images/others/author4.png",
+    ],
+  },
+  {
+    title: "Smart Digital Watch",
+    imageSrc: "assets/images/product/product-39.png",
+    price: "$49.00",
+    authors: [
+      "assets/images/others/author1.png",
+      "assets/images/others/author2.png",
+      "assets/images/others/author3.png",
+      "assets/images/others/author4.png",
+    ],
+  },
+  {
+    title: "Roco Wireless Headphone",
+    imageSrc: "assets/images/product/product-38.png",
+    price: "$49.00",
+    authors: [
+      "assets/images/others/author1.png",
+      "assets/images/others/author2.png",
+      "assets/images/others/author3.png",
+      "assets/images/others/author4.png",
+    ],
+  },
+  {
+    title: "Smart Digital Watch",
+    imageSrc: "assets/images/product/product-39.png",
+    price: "$49.00",
+    authors: [
+      "assets/images/others/author1.png",
+      "assets/images/others/author2.png",
+      "assets/images/others/author3.png",
+      "assets/images/others/author4.png",
+    ],
+  },
+];
+const Banner = () => {
   return (
     <div className="axil-main-slider-area main-slider-style-1">
       <div className="container">
@@ -54,7 +54,6 @@ const Banner = () => {
           <div className="col-lg-5 col-sm-6">
             <div className="main-slider-content">
               <div className="slider-content-activation-one">
-                
                 {productItems.map((item, index) => (
                   <div
                     key={index}
@@ -108,7 +107,6 @@ const Banner = () => {
           <div className="col-lg-7 col-sm-6">
             <div className="main-slider-large-thumb">
               <div className="slider-thumb-activation-one axil-slick-dots">
-               
                 {productItems.map((item, index) => (
                   <div
                     key={index}

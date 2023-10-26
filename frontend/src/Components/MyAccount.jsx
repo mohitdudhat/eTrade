@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-export const MyAccount = () => {
+const MyAccount = () => {
   const [userData, setUserData] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -366,3 +366,4 @@ export const MyAccount = () => {
     )
   );
 };
+export default MyAccount;

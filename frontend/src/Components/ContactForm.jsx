@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const contactInfo = [
     {
       label: "Name",
@@ -29,8 +29,16 @@ export const ContactForm = () => {
           <div className="col-lg-8">
             <div className="contact-form">
               <h3 className="title mb--10">We would love to hear from you.</h3>
-              <p>If you’ve got great products you're making or looking to work with us, then drop us a line.</p>
-              <form id="contact-form" method="POST" action="https://new.axilthemes.com/demo/template/etrade/mail.php" className="axil-contact-form">
+              <p>
+                If you’ve got great products you're making or looking to work
+                with us, then drop us a line.
+              </p>
+              <form
+                id="contact-form"
+                method="POST"
+                action="https://new.axilthemes.com/demo/template/etrade/mail.php"
+                className="axil-contact-form"
+              >
                 <div className="row row--10">
                   {contactInfo.map((info, index) => (
                     <div className="col-lg-4" key={index}>
@@ -45,12 +53,22 @@ export const ContactForm = () => {
                   <div className="col-12">
                     <div className="form-group">
                       <label htmlFor="contact-message">Your Message</label>
-                      <textarea name="contact-message" id="contact-message" cols="1" rows="2"></textarea>
+                      <textarea
+                        name="contact-message"
+                        id="contact-message"
+                        cols="1"
+                        rows="2"
+                      ></textarea>
                     </div>
                   </div>
                   <div className="col-12">
                     <div className="form-group mb--0">
-                      <button name="submit" type="submit" id="submit" className="axil-btn btn-bg-primary">
+                      <button
+                        name="submit"
+                        type="submit"
+                        id="submit"
+                        className="axil-btn btn-bg-primary"
+                      >
                         Send Message
                       </button>
                     </div>
@@ -63,7 +81,8 @@ export const ContactForm = () => {
             <div className="contact-location mb--40">
               <h4 className="title mb--20">Our Store</h4>
               <span className="address mb--20">
-                8212 E. Glen Creek Street Orchard Park, NY 14127, United States of America
+                8212 E. Glen Creek Street Orchard Park, NY 14127, United States
+                of America
               </span>
               <span className="phone">Phone: +123 456 7890</span>
               <span className="email">Email: Hello@etrade.com</span>
@@ -100,4 +119,4 @@ export const ContactForm = () => {
     </div>
   );
 };
-
+export default ContactForm;

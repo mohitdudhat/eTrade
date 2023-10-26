@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import $ from "jquery";
-export const YourCart = () => {
+const YourCart = () => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -318,3 +318,4 @@ export const YourCart = () => {
     )
   );
 };
+export default YourCart;

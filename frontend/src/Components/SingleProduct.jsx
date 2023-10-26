@@ -3,50 +3,14 @@ import WooCommerce from "./WooCommerce";
 import $ from "jquery"; // Import jQuery
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-export const SingleProduct = () => {
+import { Link, useParams } from "react-router-dom";
+const SingleProduct = () => {
   const smallThumbRef = useRef(null);
   const largeThumbRef = useRef(null);
   const [productData, setProductData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    $(".color-variant > li").on("click", function (e) {
-      $(this).addClass("active").siblings().removeClass("active");
-    });
-    $(smallThumbRef.current).slick({
-      infinite: false,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      arrows: false,
-      dots: false,
-      focusOnSelect: true,
-      vertical: true,
-      speed: 800,
-      draggable: false,
-      swipe: false,
-      asNavFor: largeThumbRef.current,
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            vertical: false,
-          },
-        },
-      ],
-    });
-    $(largeThumbRef.current).slick({
-      infinite: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false,
-      dots: false,
-      speed: 800,
-      draggable: false,
-      swipe: false,
-      asNavFor: smallThumbRef.current,
-    });
-
     // Fetch product data
     axios
       .get(`http://localhost:3001/products/${id}`)
@@ -78,9 +42,9 @@ export const SingleProduct = () => {
                           >
                             {productData.images.map((image, index) => (
                               <div className="thumbnail" key={index}>
-                                <a href={image} className="popup-zoom">
+                                <Link to={image} className="popup-zoom">
                                   <img src={image} alt="Product Images" />
-                                </a>
+                                </Link>
                               </div>
                             ))}
                           </div>
@@ -91,12 +55,12 @@ export const SingleProduct = () => {
                             </div>
                           </div>
                           <div className="product-quick-view position-view">
-                            <a
-                              href={productData.images[0]}
+                            <Link
+                              to={productData.images[0]}
                               className="popup-zoom"
                             >
                               <i className="far fa-search-plus"></i>
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -147,10 +111,10 @@ export const SingleProduct = () => {
                           ))}
                         </div>
                         <div className="review-link">
-                          <a href="/">
+                          <Link to="/">
                             (<span>{productData.totalReviews}</span> customer
                             reviews)
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <ul className="product-meta">
@@ -214,20 +178,20 @@ export const SingleProduct = () => {
                         </div>
                         <ul className="product-action d-flex-center mb--0">
                           <li className="add-to-cart">
-                            <a
-                              href="cart.html"
+                            <Link
+                              to={`/cart.html?id=${productData.id}`}
                               className="axil-btn btn-bg-primary"
                             >
                               Add to Cart
-                            </a>
+                            </Link>
                           </li>
                           <li className="wishlist">
-                            <a
-                              href="wishlist.html"
+                            <Link
+                              to={`/wishlist.html?id=${productData.id}`}
                               className="axil-btn wishlist-btn"
                             >
                               <i className="far fa-heart"></i>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -237,9 +201,9 @@ export const SingleProduct = () => {
               </div>
             </div>
           </div>
-          <WooCommerce />
         </div>
       )}
+      <WooCommerce />
     </div>
   );
 };
