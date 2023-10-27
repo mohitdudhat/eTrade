@@ -12,11 +12,15 @@ import Service from "../Components/Service";
 import WhyChoose from "../Components/WhyChoose";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import AdminProduct from "./AdminProduct";
+
 const Home = () => {
   return (
     <>
       <Header TopCampaign={true} style={1} />
       <Banner />
+      <AdminProduct />
+
       {/* <Category />
       <Poster />
       <Explore />

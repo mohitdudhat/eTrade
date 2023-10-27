@@ -1190,3 +1190,26 @@
   };
   axilInit.i();
 })(window, document, jQuery);
+const dropzone = document.getElementsByClassName("dropzone");
+const imageInput = document.getElementsByClassName("imageInput");
+const imagePreviews = document.getElementById("imagePreviews");
+
+Array.from(imageInput).forEach((element) => {
+  element.addEventListener("change", (e) => {
+    const files = e.target.files;
+    for (const file of files) {
+      if (file.type.startsWith("image/")) {
+        const img = document.createElement("img");
+        img.classList.add("image-preview", "preview-box");
+        img.src = URL.createObjectURL(file);
+        imagePreviews.appendChild(img);
+      }
+    }
+  });
+});
+
+Array.from(dropzone).forEach((element) => {
+  element.addEventListener("click", () => {
+    imageInput[0].click(); // Assuming there's only one image input, you may need to adjust the index if there are multiple.
+  });
+});

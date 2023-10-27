@@ -633,6 +633,46 @@
         "discountText": "20% OFF"
       },
       "category": "Laptops"
+    },
+    {
+      "productTitle": "a",
+      "price": "a",
+      "oldPrice": "a",
+      "couponCode": "",
+      "description": "a",
+      "category": "Electronics",
+      "discountAmount": "",
+      "discountText": "d",
+      "isProductInStock": true,
+      "isFreeDeliveryAvailable": true,
+      "discountCode": "a",
+      "color_1": "a",
+      "size-1": "a",
+      "size-3": "a",
+      "colors": [
+        "#aae6f8",
+        "#5f8af7",
+        "#59c3c0"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "images": [
+        "/assets/images/product/product-big-01.png",
+        "/assets/images/product/product-big-02.png",
+        "/assets/images/product/product-big-03.png",
+        "/assets/images/product/product-big-02.png"
+      ],
+      "thumbnail": "/assets/images/product/product-big-01.png",
+      "discount": {
+        "discountPercentage": null,
+        "discountText": "d"
+      },
+      "id": 19
     }
   ],
   "arrivals": [
@@ -890,7 +930,7 @@
       "cart": [
         {
           "product_id": 0,
-          "quantity": 26
+          "quantity": 27
         },
         {
           "product_id": 1,

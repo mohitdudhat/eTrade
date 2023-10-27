@@ -17754,3 +17754,33 @@ body.open .closeMask {
 .slick-list {
   outline: none;
 }
+.dropzone {
+  width: 200px; /* Set the width to create a square dropzone */
+  height: 200px; /* Set the height to match the width for a square */
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  display: flex; /* Use Flexbox */
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  cursor: pointer;
+  padding: 0px 15px;
+  text-align: center;
+}
+.dropzone input {
+  display: none; /* Hide the file input element */
+}
+.image-preview {
+  width: 200px;
+  height: 200px;
+  object-fit: contain; /* Set height to 100% to match the box */
+}
+.preview-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.preview-box {
+  width: 200px; /* Adjust to your desired width */
+  height: 200px; /* Adjust to your desired height */
+  margin: 10px; /* Add margin for spacing */
+}

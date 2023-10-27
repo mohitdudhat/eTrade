@@ -179,7 +179,7 @@ function App() {
             <Route path="/my-account.html" element={<MyAccountPage />} />
             <Route path="/contact.html" element={<ContactPage />} />
           </Routes>
-          <Service />
+          {/* <Service /> */}
         </BrowserRouter>
       )}
     </div>
