@@ -34,6 +34,10 @@ import AboutUs from "./Components/AboutUs";
 import MyAccountPage from "./Components/MyAccountPage";
 import ContactPage from "./Components/ContactPage";
 import AdminProduct from "./Components/AdminProduct";
+import { useHistory } from "react-router";
+import SearchModal from "./Components/SearchModal";
+import Dashboard from "./Components/Dashboard";
+
 function App() {
   const [progress, setProgress] = useState(0);
   const [render, setRender] = useState(false);
@@ -89,14 +93,14 @@ function App() {
       loadScripts(0);
     }, 1500);
 
-    // return () => {
-    //   scriptSources.forEach((src) => {
-    //     const scriptElement = document.querySelector(`script[src="${src}"]`);
-    //     if (scriptElement) {
-    //       scriptElement.remove();
-    //     }
-    //   });
-    // };
+    return () => {
+      scriptSources.forEach((src) => {
+        const scriptElement = document.querySelector(`script[src="${src}"]`);
+        if (scriptElement) {
+          scriptElement.remove();
+        }
+      });
+    };
   }, []);
 
   return (
@@ -116,6 +120,7 @@ function App() {
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="/admin/product" element={<AdminProduct />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/shop.html" element={<Shop />} />
             <Route
               path="/single-product.html/:id"
@@ -127,19 +132,19 @@ function App() {
             <Route
               path="/sign-in.html"
               element={
-                <>
+                <div className="axil-signin-area">
                   <AuthHeader page="sign-in" />
                   <AuthForm isSignIn={true} />
-                </>
+                </div>
               }
             />
             <Route
               path="/sign-up.html"
               element={
-                <>
+                <div className="axil-signin-area">
                   <AuthHeader />
                   <AuthForm />
-                </>
+                </div>
               }
             />
             <Route
@@ -179,6 +184,8 @@ function App() {
             <Route path="/my-account.html" element={<MyAccountPage />} />
             <Route path="/contact.html" element={<ContactPage />} />
           </Routes>
+
+          <SearchModal />
           {/* <Service /> */}
         </BrowserRouter>
       )}

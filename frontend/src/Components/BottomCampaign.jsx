@@ -6,7 +6,7 @@ export const BottomCampaign = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-5 col-lg-6 col-md-10">
-            <div class="header-campaign-activation axil-slick-arrow arrow-both-side header-campaign-arrow">
+            <div className="header-campaign-activation axil-slick-arrow arrow-both-side header-campaign-arrow">
               <div className="slick-slide">
                 <div className="campaign-content">
                   <p>

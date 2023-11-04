@@ -13,6 +13,11 @@ const Explore = () => {
         console.error("Error fetching data:", error);
       });
   };
+  function Authentication(product, main_Url) {
+    return localStorage.getItem("user_id") && localStorage.getItem("user_data")
+      ? main_Url
+      : "/sign-in.html";
+  }
   useEffect(() => {
     fetchAllProduct();
   }, []);
@@ -37,7 +42,7 @@ const Explore = () => {
                   >
                     <div className="axil-product product-style-one">
                       <div className="thumbnail">
-                        <Link to={`single-product.html/${product.id}`}>
+                        <Link to={`/single-product.html/${product.id}`}>
                           <img
                             data-sal="zoom-out"
                             data-sal-delay="200"
@@ -63,12 +68,22 @@ const Explore = () => {
                               </Link>
                             </li>
                             <li className="select-option">
-                              <Link to={`single-product.html/${product.id}`}>
+                              <Link
+                                to={Authentication(
+                                  product,
+                                  `/single-product.html/${product.id}`
+                                )}
+                              >
                                 Add to Cart
                               </Link>
                             </li>
                             <li className="wishlist">
-                              <Link to={`wishlist.html?id=${product.id}`}>
+                              <Link
+                                to={Authentication(
+                                  product,
+                                  `/wishlist.html?id=${product.id}`
+                                )}
+                              >
                                 <i className="far fa-heart"></i>
                               </Link>
                             </li>
@@ -114,7 +129,7 @@ const Explore = () => {
           <div className="row">
             <div className="col-lg-12 text-center mt--20 mt_sm--0">
               <Link
-                to="shop.html"
+                to="/shop.html"
                 className="axil-btn btn-bg-lighter btn-load-more"
               >
                 View All Products

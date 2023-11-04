@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 const ShopArea = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -12,6 +13,7 @@ const ShopArea = () => {
   const [selectedRating, setSelectedRating] = useState(false);
   const [selectedPriceRange, setSelectedPriceRange] = useState([]);
   const [selectedSort, setSort] = useState(false);
+  const [totalResults, setTotalResults] = useState(0);
 
   const handleCategoryChange = (event) => {
     const category = event.target.value;
@@ -32,7 +34,19 @@ const ShopArea = () => {
     );
     console.log(priceRange.replace(/\s/g, "").split("-"));
   };
-
+  function Authentication(product, main_Url) {
+    return localStorage.getItem("user_id") && localStorage.getItem("user_data")
+      ? main_Url
+      : "/sign-in.html";
+  }
+  const fetchMoreData = () => {
+    setProductData((prevData) => [...prevData, ...totalResults.slice(0, 5)]);
+    setTotalResults(totalResults.slice(5));
+    console.log(totalResults.slice(5));
+    if (!totalResults.slice(5).length) {
+      setTotalResults(false);
+    }
+  };
   useEffect(() => {
     const params = {};
 
@@ -56,8 +70,10 @@ const ShopArea = () => {
     axios
       .get(`http://localhost:3001/products`, { params })
       .then((response) => {
-        setProductData(response.data);
+        setProductData(response.data.slice(0, 5));
+        setTotalResults(response.data.slice(5));
         console.log(response.data);
+        console.log(response.data.slice(5));
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -97,11 +113,11 @@ const ShopArea = () => {
                         value={selectedRating}
                       >
                         <option value={false}>Rating</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value={1}>1 & Above </option>
+                        <option value={2}>2 & Above</option>
+                        <option value={3}>3 & Above</option>
+                        <option value={4}>4 & Above</option>
+                        <option value={5}>5</option>
                       </select>
 
                       <select
@@ -137,12 +153,21 @@ const ShopArea = () => {
               </div>
             </div>
           </div>
-          <div className="row row--15">
+          <InfiniteScroll
+            className="row row--15"
+            dataLength={productData.length}
+            hasMore={productData.length !== totalResults}
+          >
             {productData.map((product) => (
               <div key={product.id} className="col-xl-3 col-lg-4 col-sm-6">
                 <div className="axil-product product-style-one has-color-pick mt--40">
                   <div className="thumbnail">
-                    <Link to="single-product.html">
+                    <Link
+                      to={Authentication(
+                        product,
+                        `/single-product.html/${product.id}`
+                      )}
+                    >
                       <img src={product.thumbnail} alt="Product Images" />
                     </Link>
                     <div className="label-block label-right">
@@ -151,12 +176,22 @@ const ShopArea = () => {
                     <div className="product-hover-action">
                       <ul className="cart-action">
                         <li className="wishlist">
-                          <Link to={`/wishlist.html?id=${product.id}`}>
+                          <Link
+                            to={Authentication(
+                              product,
+                              `/wishlist.html?id=${product.id}`
+                            )}
+                          >
                             <i className="far fa-heart"></i>
                           </Link>
                         </li>
                         <li className="select-option">
-                          <Link to={`/single-product.html/${product.id}`}>
+                          <Link
+                            to={Authentication(
+                              product,
+                              `/single-product.html/${product.id}`
+                            )}
+                          >
                             Add to Cart
                           </Link>
                         </li>
@@ -176,7 +211,10 @@ const ShopArea = () => {
                     <div className="inner">
                       <h5 className="title">
                         <Link
-                          to={`/single-product.html/${product.productTitle}`}
+                          to={Authentication(
+                            product,
+                            `/single-product.html/${product.id}`
+                          )}
                         >
                           {product.productTitle}
                         </Link>
@@ -213,11 +251,16 @@ const ShopArea = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </InfiniteScroll>
           <div className="text-center pt--30">
-            <Link to="/" className="axil-btn btn-bg-lighter btn-load-more">
-              Load more
-            </Link>
+            {totalResults && (
+              <Link
+                className="axil-btn btn-bg-lighter btn-load-more"
+                onClick={() => fetchMoreData()}
+              >
+                Load more
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -10,10 +10,10 @@ export const NavbarMenu = () => {
           <div className="header-navbar">
             <div className="header-brand">
               <Link to="/index.html" className="logo logo-dark">
-                <img src="assets/images/logo/logo.png" alt="Site Logo" />
+                <img src="/assets/images/logo/logo.png" alt="Site Logo" />
               </Link>
               <Link to="/index.html" className="logo logo-light">
-                <img src="assets/images/logo/logo-light.png" alt="Site Logo" />
+                <img src="/assets/images/logo/logo-light.png" alt="Site Logo" />
               </Link>
             </div>
             <div className="header-main-nav">

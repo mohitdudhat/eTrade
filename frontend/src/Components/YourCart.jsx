@@ -77,7 +77,8 @@ const YourCart = () => {
       .get(`http://localhost:3001/products?${productIdsString}`)
       .then((response) => {
         const productData = response.data;
-        setCart(productData);
+
+        setCart(!productData.leanth ? productData : false);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
@@ -162,57 +163,59 @@ const YourCart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((item) => (
-                    <tr key={item.id}>
-                      <td className="product-remove">
-                        <a
-                          href="#"
-                          className="remove-wishlist"
-                          onClick={() => removeItemCart(item.id)}
-                        >
-                          <i className="fal fa-times"></i>
-                        </a>
-                      </td>
-                      <td className="product-thumbnail">
-                        <a href={`single-product.html/${item.id}`}>
-                          <img
-                            src={`${item.thumbnail}`}
-                            alt="Digital Product"
-                          />
-                        </a>
-                      </td>
-                      <td className="product-title">
-                        <a href={`single-product.html/${item.id}`}>
-                          {item.productTitle}
-                        </a>
-                      </td>
-                      <td className="product-price" data-title="Price">
-                        <span className="currency-symbol">$</span>
-                        {item.price}
-                      </td>
-                      <td className="product-quantity" data-title="Qty">
-                        <div className="pro-qty">
-                          <input
-                            type="number"
-                            className="quantity-input"
-                            defaultValue={
-                              users_data.cart.find(
-                                (cartItems) => cartItems.product_id === item.id
-                              )["quantity"]
-                            }
-                            onChange={() => console.log("ok")}
-                          />
-                        </div>
-                      </td>
-                      <td className="product-subtotal" data-title="Subtotal">
-                        <span className="currency-symbol">$</span>
-                        {item.price *
-                          users_data.cart.find(
-                            (cartItems) => cartItems.product_id === item.id
-                          )["quantity"]}
-                      </td>
-                    </tr>
-                  ))}
+                  {cart &&
+                    cart.map((item) => (
+                      <tr key={item.id}>
+                        <td className="product-remove">
+                          <a
+                            href="#"
+                            className="remove-wishlist"
+                            onClick={() => removeItemCart(item.id)}
+                          >
+                            <i className="fal fa-times"></i>
+                          </a>
+                        </td>
+                        <td className="product-thumbnail">
+                          <a href={`single-product.html/${item.id}`}>
+                            <img
+                              src={`${item.thumbnail}`}
+                              alt="Digital Product"
+                            />
+                          </a>
+                        </td>
+                        <td className="product-title">
+                          <a href={`single-product.html/${item.id}`}>
+                            {item.productTitle}
+                          </a>
+                        </td>
+                        <td className="product-price" data-title="Price">
+                          <span className="currency-symbol">$</span>
+                          {item.price}
+                        </td>
+                        <td className="product-quantity" data-title="Qty">
+                          <div className="pro-qty">
+                            <input
+                              type="number"
+                              className="quantity-input"
+                              value={
+                                users_data.cart.find(
+                                  (cartItems) =>
+                                    cartItems.product_id === item.id
+                                )["quantity"]
+                              }
+                              onChange={() => console.log("ok")}
+                            />
+                          </div>
+                        </td>
+                        <td className="product-subtotal" data-title="Subtotal">
+                          <span className="currency-symbol">$</span>
+                          {item.price *
+                            users_data.cart.find(
+                              (cartItems) => cartItems.product_id === item.id
+                            )["quantity"]}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

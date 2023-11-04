@@ -13,15 +13,13 @@ import WhyChoose from "../Components/WhyChoose";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import AdminProduct from "./AdminProduct";
-
+import Scripts from "./Scripts";
 const Home = () => {
   return (
     <>
       <Header TopCampaign={true} style={1} />
       <Banner />
-      <AdminProduct />
-
-      {/* <Category />
+      <Category />
       <Poster />
       <Explore />
       <Testimonial />
@@ -31,9 +29,9 @@ const Home = () => {
       <Axil />
       <NewsLetter />
       <Service />
-      <Footer /> */}
+      <Footer />
     </>
   );
 };
 
-export default Home;
+export default Scripts(Home);

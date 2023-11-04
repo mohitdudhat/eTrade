@@ -5,7 +5,7 @@
       "productTitle": "3D™ wireless headset",
       "price": 155,
       "oldPrice": 255,
-      "productRating": 4,
+      "productRating": 4.5,
       "totalReviews": 2,
       "isProductInStock": true,
       "isFreeDeliveryAvailable": true,
@@ -27,14 +27,30 @@
         "/assets/images/product/product-big-01.png",
         "/assets/images/product/product-big-02.png",
         "/assets/images/product/product-big-03.png",
+        "/assets/images/product/product-big-02.png",
         "/assets/images/product/product-big-02.png"
       ],
       "thumbnail": "/assets/images/product/product-big-01.png",
       "discount": {
-        "discountPercentage": 20,
+        "discountPercentage": null,
         "discountText": "20% OFF"
       },
-      "category": "Headphones"
+      "category": "Headphones",
+      "color_1": "#aae6f8",
+      "color_2": "#5f8af7",
+      "color_3": "#59c3c0",
+      "size_1": "xs",
+      "size_2": "s",
+      "size_3": "m",
+      "size_4": "l",
+      "size_5": "xl",
+      "discountText": "20% OFF",
+      "discountPercentage": null,
+      "slick_1": "/assets/images/product/product-big-01.png",
+      "slick_2": "/assets/images/product/product-big-02.png",
+      "slick_3": "/assets/images/product/product-big-03.png",
+      "slick_4": "/assets/images/product/product-big-02.png",
+      "slick_5": "/assets/images/product/product-big-02.png"
     },
     {
       "id": 2,
@@ -550,17 +566,27 @@
         "xl"
       ],
       "images": [
-        "/assets/images/product/electric/product-14.png",
+        "/assets/images/product/product-big-01.png",
         "/assets/images/product/product-big-02.png",
         "/assets/images/product/product-big-03.png",
         "/assets/images/product/product-big-02.png"
       ],
-      "thumbnail": "/assets/images/product/electric/product-14.png",
+      "thumbnail": "/assets/images/product/product-big-01.png",
       "discount": {
-        "discountPercentage": 20,
+        "discountPercentage": null,
         "discountText": "20% OFF"
       },
-      "category": "Kitchen Appliances"
+      "category": "Kitchen Appliances",
+      "color_1": "#aae6f8",
+      "color_2": "#5f8af7",
+      "color_3": "#59c3c0",
+      "size_1": "xs",
+      "size_2": "s",
+      "size_3": "m",
+      "size_4": "l",
+      "size_5": "xl",
+      "discountText": "20% OFF",
+      "discountPercentage": null
     },
     {
       "id": 17,
@@ -597,82 +623,6 @@
         "discountText": "20% OFF"
       },
       "category": "Electronics"
-    },
-    {
-      "id": 18,
-      "productTitle": "Asus Zenbook Laptop",
-      "price": 899,
-      "oldPrice": 899,
-      "productRating": 2.5,
-      "totalReviews": 100,
-      "isProductInStock": true,
-      "isFreeDeliveryAvailable": true,
-      "discountCode": "MOTIVE30",
-      "description": "In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.",
-      "colors": [
-        "#aae6f8",
-        "#5f8af7",
-        "#59c3c0"
-      ],
-      "sizes": [
-        "xs",
-        "s",
-        "m",
-        "l",
-        "xl"
-      ],
-      "images": [
-        "/assets/images/product/electric/product-16.png",
-        "/assets/images/product/product-big-02.png",
-        "/assets/images/product/product-big-03.png",
-        "/assets/images/product/product-big-02.png"
-      ],
-      "thumbnail": "/assets/images/product/electric/product-16.png",
-      "discount": {
-        "discountPercentage": 20,
-        "discountText": "20% OFF"
-      },
-      "category": "Laptops"
-    },
-    {
-      "productTitle": "a",
-      "price": "a",
-      "oldPrice": "a",
-      "couponCode": "",
-      "description": "a",
-      "category": "Electronics",
-      "discountAmount": "",
-      "discountText": "d",
-      "isProductInStock": true,
-      "isFreeDeliveryAvailable": true,
-      "discountCode": "a",
-      "color_1": "a",
-      "size-1": "a",
-      "size-3": "a",
-      "colors": [
-        "#aae6f8",
-        "#5f8af7",
-        "#59c3c0"
-      ],
-      "sizes": [
-        "xs",
-        "s",
-        "m",
-        "l",
-        "xl"
-      ],
-      "images": [
-        "/assets/images/product/product-big-01.png",
-        "/assets/images/product/product-big-02.png",
-        "/assets/images/product/product-big-03.png",
-        "/assets/images/product/product-big-02.png"
-      ],
-      "thumbnail": "/assets/images/product/product-big-01.png",
-      "discount": {
-        "discountPercentage": null,
-        "discountText": "d"
-      },
-      "id": 19
     }
   ],
   "arrivals": [
@@ -740,91 +690,29 @@
       "id": 1,
       "username": "user123",
       "email": "user@example.com",
-      "password": "hashedpassword123"
+      "password": "hashedpassword123",
+      "role": "User"
     },
     {
       "username": "asdf",
       "email": "asdf",
       "password": "asdf",
-      "id": 2
+      "id": 2,
+      "role": "User"
     },
     {
       "email": "a",
       "username": "A",
       "password": "a",
-      "id": 3
+      "id": 3,
+      "role": "Admin"
     },
     {
-      "username": "z",
-      "email": "z",
-      "password": "z",
-      "id": 4
-    },
-    {
-      "username": "v",
-      "email": "v",
-      "password": "v",
-      "id": 5
-    },
-    {
-      "username": "1",
-      "email": "1",
-      "password": "1",
-      "id": 6
-    },
-    {
-      "username": "jk",
-      "email": "jk",
-      "password": "jk",
-      "id": 7
-    },
-    {
-      "username": "o",
-      "email": "o",
-      "password": "o",
-      "id": 8
-    },
-    {
-      "username": "355mohit",
-      "email": "jk",
-      "password": "kl",
-      "id": 9
-    },
-    {
-      "username": "p",
-      "email": "p",
-      "password": "p",
-      "id": 10
-    },
-    {
-      "username": "i",
-      "email": "i",
-      "password": "i",
-      "id": 11
-    },
-    {
-      "username": "l",
-      "email": "l",
-      "password": "l",
-      "id": 12
-    },
-    {
-      "username": "mm",
-      "email": "mm",
-      "password": "mm",
-      "id": 13
-    },
-    {
-      "username": ".",
-      "email": ".",
-      "password": ".",
-      "id": 14
-    },
-    {
-      "username": "a",
-      "email": "a",
-      "password": "a",
-      "id": 15
+      "username": "@admin",
+      "email": "@admin",
+      "password": "@admin",
+      "id": 17,
+      "role": "User"
     }
   ],
   "users_data": [
@@ -969,11 +857,49 @@
         },
         {
           "product_id": 13
+        },
+        {
+          "product_id": 1
         }
       ],
       "PendingOrders": [],
       "shippingAddress": [],
       "id": 9
+    },
+    {
+      "signUpDate": "03/11/2023",
+      "username": "new",
+      "email": "new",
+      "user_id": 16,
+      "cart": [
+        {
+          "product_id": 2,
+          "quantity": 2
+        },
+        {
+          "product_id": 3,
+          "quantity": 1
+        }
+      ],
+      "wishlist": [
+        {
+          "product_id": 1
+        }
+      ],
+      "PendingOrders": [],
+      "shippingAddress": [],
+      "id": 10
+    },
+    {
+      "signUpDate": "04/11/2023",
+      "username": "@admin",
+      "email": "@admin",
+      "user_id": 17,
+      "cart": [],
+      "wishlist": [],
+      "PendingOrders": [],
+      "shippingAddress": [],
+      "id": 11
     }
   ],
   "orders": [

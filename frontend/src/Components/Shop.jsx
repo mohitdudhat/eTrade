@@ -5,6 +5,8 @@ import ShopArea from "../Components/ShopArea";
 import NewsLetter from "../Components/NewsLetter";
 import Service from "../Components/Service";
 import Footer from "../Components/Footer";
+import Scripts from "./Scripts";
+
 const Shop = () => {
   return (
     <div>
@@ -18,4 +20,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Scripts(Shop);

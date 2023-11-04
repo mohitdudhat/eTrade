@@ -1,33 +1,45 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AdminProduct = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [formData, setFormData] = useState({
     productTitle: "",
     price: "",
     oldPrice: "",
-    couponCode: "",
+    discountCode: "",
     description: "",
     category: "3", // Default category value
-    discountAmount: "",
+    discountPercentage: "",
     discountText: "",
     isProductInStock: false,
     isFreeDeliveryAvailable: false,
+    thumbnail: "",
+    color_1: "",
+    color_2: "",
+    color_3: "",
   });
-
+  const [editId, setEditId] = useState(false);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
     fetchData();
+    const userData = JSON.parse(localStorage.getItem("user_data"));
+    if (userData.username.includes("@admin")) {
+      alert("You are admiin");
+    } else {
+      alert("You can't access this page");
+      navigate("/");
+    }
   }, []);
 
   const handleViewDetails = async (productId) => {
@@ -45,41 +57,179 @@ const AdminProduct = () => {
   };
   const FormChange = (e) => {
     const name = e.target.name;
+    console.log(name);
     const value = e.target.value;
     setFormData({ ...formData, [name]: value });
     console.log({ ...formData, [name]: value });
   };
 
   const handleAddProduct = async () => {
-    try {
-      const response = await axios.post("http://localhost:3001/products", {
-        ...formData,
-        colors: ["#aae6f8", "#5f8af7", "#59c3c0"],
-        sizes: ["xs", "s", "m", "l", "xl"],
-        images: [
-          "/assets/images/product/product-big-01.png",
-          "/assets/images/product/product-big-02.png",
-          "/assets/images/product/product-big-03.png",
-          "/assets/images/product/product-big-02.png",
-        ],
-        thumbnail: "/assets/images/product/product-big-01.png",
-        discount: {
-          discountPercentage: parseFloat(formData.discountAmount),
-          discountText: formData.discountText,
-        },
-        category: formData.category,
-      });
+    if (editId) {
+      try {
+        const {
+          slick_1,
+          slick_2,
+          slick_3,
+          slick_4,
+          size_1,
+          size_2,
+          size_3,
+          size_4,
+          size_5,
+          color_1,
+          color_2,
+          color_3,
+          ...newformData
+        } = formData;
+        const response = await axios.put(
+          `http://localhost:3001/products/${editId}`,
+          {
+            ...newformData,
+            colors: ["#aae6f8", "#5f8af7", "#59c3c0"],
+            sizes: ["xs", "s", "m", "l", "xl"],
+            images: [
+              formData.slick_1,
+              formData.slick_2,
+              formData.slick_3,
+              formData.slick_4,
+            ],
+            thumbnail: formData.thumbnail,
+            discount: {
+              discountPercentage: parseFloat(formData.discountAmount),
+              discountText: formData.discountText,
+            },
+            category: formData.category,
+          }
+        );
 
-      const newProducts = [...products, response.data];
-      setProducts(newProducts);
-      console.log(newProducts);
-      console.log(`Added product with ID ${response.data.id}`);
-    } catch (error) {
-      console.error("Error adding product:", error);
+        fetchData();
+        console.log(`Updated product with ID ${response.data.id}`);
+        setEditId(false);
+        setFormData({
+          productTitle: "",
+          price: "",
+          oldPrice: "",
+          discountCode: "",
+          description: "",
+          category: "3", // Default category value
+          discountPercentage: "",
+          discountText: "",
+          isProductInStock: false,
+          isFreeDeliveryAvailable: false,
+          thumbnail: "",
+          color_1: "",
+          color_2: "",
+          color_3: "",
+          size_1: "",
+          size_2: "",
+          size_3: "",
+          size_4: "",
+          size_5: "",
+          slick_1: "",
+          slick_2: "",
+          slick_3: "",
+          slick_4: "",
+        });
+      } catch (error) {
+        console.error("Error adding product:", error);
+      }
+    } else {
+      try {
+        const {
+          slick_1,
+          slick_2,
+          slick_3,
+          slick_4,
+          size_1,
+          size_2,
+          size_3,
+          size_4,
+          size_5,
+          color_1,
+          color_2,
+          color_3,
+          ...newformData
+        } = formData;
+        const response = await axios.post("http://localhost:3001/products", {
+          ...newformData,
+          colors: ["#aae6f8", "#5f8af7", "#59c3c0"],
+          sizes: ["xs", "s", "m", "l", "xl"],
+          images: [
+            formData.slick_1,
+            formData.slick_2,
+            formData.slick_3,
+            formData.slick_4,
+          ],
+          thumbnail: formData.thumbnail,
+          discount: {
+            discountPercentage: parseFloat(formData.discountPercentage),
+            discountText: formData.discountText,
+          },
+          category: formData.category,
+        });
+
+        const newProducts = [...products, response.data];
+        setProducts(newProducts);
+        setFormData({
+          productTitle: "",
+          price: "",
+          oldPrice: "",
+          discountCode: "",
+          description: "",
+          category: "3", // Default category value
+          discountPercentage: "",
+          discountText: "",
+          isProductInStock: false,
+          isFreeDeliveryAvailable: false,
+          thumbnail: "",
+          color_1: "",
+          color_2: "",
+          color_3: "",
+          size_1: "",
+          size_2: "",
+          size_3: "",
+          size_4: "",
+          size_5: "",
+          slick_1: "",
+          slick_2: "",
+          slick_3: "",
+          slick_4: "",
+        });
+        console.log(newProducts);
+        console.log(`Added product with ID ${response.data.id}`);
+      } catch (error) {
+        console.error("Error adding product:", error);
+      }
     }
   };
   const handleEditProduct = (productId) => {
     console.log(`Edit product with ID ${productId}`);
+    axios
+      .get(`http://localhost:3001/products/${productId}`)
+      .then((res) => {
+        setFormData({
+          ...res.data,
+          color_1: res.data.colors[0],
+          color_2: res.data.colors[1],
+          color_3: res.data.colors[2],
+          size_1: res.data.sizes[0],
+          size_2: res.data.sizes[1],
+          size_3: res.data.sizes[2],
+          size_4: res.data.sizes[3],
+          size_5: res.data.sizes[4],
+          discountText: res.data.discount.discountText,
+          discountPercentage: res.data.discount.discountPercentage,
+          slick_1: res.data.images[0],
+          slick_2: res.data.images[1],
+          slick_3: res.data.images[2],
+          slick_4: res.data.images[3],
+        });
+        console.log(formData);
+        setEditId(productId);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleDeleteProduct = (productId) => {
@@ -153,7 +303,9 @@ const AdminProduct = () => {
       )}
 
       <div className="axil-checkout-billing">
-        <h4 className="title mb--40">Add Product</h4>
+        <h4 className="title mb--40">
+          {editId ? "Edit Product" : "Add Product"}
+        </h4>
         <div className="row">
           <div className="form-group">
             <label>
@@ -163,6 +315,7 @@ const AdminProduct = () => {
               type="text"
               placeholder="#Product Name Here"
               name="productTitle"
+              value={formData.productTitle}
               onChange={(e) => FormChange(e)}
             />
           </div>
@@ -177,6 +330,7 @@ const AdminProduct = () => {
                 type="text"
                 name="price"
                 placeholder="Current Price"
+                value={formData.price}
                 onChange={(e) => FormChange(e)}
               />
             </div>
@@ -191,6 +345,7 @@ const AdminProduct = () => {
                 name="oldPrice"
                 placeholder="Old Price"
                 onChange={(e) => FormChange(e)}
+                value={formData.oldPrice}
               />
             </div>
           </div>
@@ -201,6 +356,7 @@ const AdminProduct = () => {
             type="text"
             name="discountCode"
             onChange={(e) => FormChange(e)}
+            value={formData.discountCode}
           />
         </div>
         <div className="form-group">
@@ -210,6 +366,7 @@ const AdminProduct = () => {
             name="description"
             placeholder="Description about your product"
             defaultValue={""}
+            value={formData.description}
             onChange={(e) => FormChange(e)}
           />
         </div>
@@ -224,7 +381,8 @@ const AdminProduct = () => {
                   type="text"
                   name={`color_${i + 1}`}
                   placeholder={`#Your Color Product ${i + 1}`}
-                  onChange={FormChange}
+                  value={formData[`color_${i + 1}`]} // Use dynamic key
+                  onChange={(e) => FormChange(e)} // Pass the key and value to FormChange
                 />
               </div>
             </div>
@@ -240,9 +398,10 @@ const AdminProduct = () => {
                 </label>
                 <input
                   type="text"
-                  name={`size-${i + 1}`}
+                  name={`size_${i + 1}`}
                   placeholder={`Product Size ${i + 1}`}
                   onChange={FormChange}
+                  value={formData[`size_${i + 1}`]} // Use dynamic key
                 />
               </div>
             </div>
@@ -251,7 +410,28 @@ const AdminProduct = () => {
 
         <div>
           <h4>Slick Images</h4>
-          <form className="image-upload-form" encType="multipart/form-data">
+          {[1, 2, 3, 4].map((item) => {
+            return (
+              <div className="form-group">
+                <label>
+                  Slick Image {item}
+                  <span>*</span>
+                </label>
+                <input
+                  type="text"
+                  id={`slick_${item}`}
+                  name={`slick_${item}`}
+                  placeholder={`Slick Url ${item} `}
+                  value={formData[`slick_${item}`]}
+                  onChange={(e) => {
+                    FormChange(e);
+                  }}
+                />
+              </div>
+            );
+          })}
+
+          {/* <form className="image-upload-form" encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="image">Upload Image</label>
               <div className="dropzone" id="slick-images-dropzone">
@@ -267,11 +447,26 @@ const AdminProduct = () => {
               </div>
             </div>
           </form>
-          <div id="slick-image-previews" className="preview-row"></div>
+          <div id="slick-image-previews" className="preview-row"></div> */}
         </div>
         <div>
           <h4>ThumbNail Images</h4>
-          <form className="image-upload-form" encType="multipart/form-data">
+          <div className="form-group">
+            <label>
+              Upload Image<span>*</span>
+            </label>
+            <input
+              type="text"
+              id="thumbnail"
+              name="thumbnail"
+              placeholder="Image Url"
+              value={formData.thumbnail}
+              onChange={(e) => {
+                FormChange(e);
+              }}
+            />
+          </div>
+          {/* <form className="image-upload-form" encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="image">Upload Image</label>
               <div className="dropzone" id="thumbnail-images-dropzone">
@@ -287,15 +482,20 @@ const AdminProduct = () => {
               </div>
             </div>
           </form>
-          <div id="thumbnail-image-previews" className="preview-row">
-            {/* Image previews will be displayed here */}
-          </div>
+          <div id="thumbnail-image-previews" className="preview-row"> */}
+          {/* Image previews will be displayed here */}
+          {/* </div> */}
         </div>
         <div className="form-group">
           <label>
             Categories <span>*</span>
           </label>
-          <select id="category" name="category" onChange={(e) => FormChange(e)}>
+          <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={(e) => FormChange(e)}
+          >
             <option>Electronics</option>
             <option>Electronics</option>
             <option>Electronics Zealand</option>
@@ -312,10 +512,11 @@ const AdminProduct = () => {
             type="number"
             id="discount-amount"
             name="discountPercentage"
-            placeholder="Discount Amount"
+            placeholder="Discount Percentage"
             onChange={(e) => {
               FormChange(e);
             }}
+            value={formData.discountPercentage}
           />
           <input
             type="text"
@@ -326,6 +527,7 @@ const AdminProduct = () => {
             onChange={(e) => {
               FormChange(e);
             }}
+            value={formData.discountText}
           />
         </div>
         <div className="form-group input-group">
@@ -364,7 +566,7 @@ const AdminProduct = () => {
           className="axil-btn btn-bg-primary w-25 py-3 px-3 mb-4"
           onClick={() => handleAddProduct()}
         >
-          Add Product
+          {editId ? "Edit Product" : "Add Product"}
         </button>
       </div>
     </div>

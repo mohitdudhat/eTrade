@@ -21,7 +21,6 @@ const SingleProduct = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-    console.log(productData.images);
   }, []);
 
   return (
@@ -86,7 +85,7 @@ const SingleProduct = () => {
                         {productData.productTitle}
                       </h2>
                       <span className="price-amount">
-                        {productData.price}&nbsp;&nbsp;&nbsp;
+                        ${productData.price}&nbsp;&nbsp;&nbsp;
                         <del
                           style={{
                             color: "#d6d6d6",
@@ -94,7 +93,7 @@ const SingleProduct = () => {
                             marginLeft: "0",
                           }}
                         >
-                          {productData.oldPrice}
+                          ${productData.oldPrice}
                         </del>
                       </span>
                       <div className="product-rating">
