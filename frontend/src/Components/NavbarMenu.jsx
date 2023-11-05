@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const NavbarMenu = () => {
+const NavbarMenu = () => {
   return (
     <>
       <div id="axil-sticky-placeholder"></div>
@@ -150,3 +150,4 @@ export const NavbarMenu = () => {
     </>
   );
 };
+export default NavbarMenu;

@@ -104,7 +104,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-7 col-sm-6">
+          <div className="col-lg-7 col-sm-6 ">
             <div className="main-slider-large-thumb">
               <div className="slider-thumb-activation-one axil-slick-dots">
                 {productItems.map((item, index) => (

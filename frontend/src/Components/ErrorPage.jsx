@@ -3,7 +3,7 @@ import sal from "sal.js";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export const ErrorPage = () => {
+const ErrorPage = () => {
   useEffect(() => {
     sal({
       threshold: 0.5,
@@ -59,3 +59,4 @@ export const ErrorPage = () => {
     </>
   );
 };
+export default ErrorPage;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
 import Category from "../Components/Category";
 import Poster from "../Components/Poster";
@@ -12,8 +12,6 @@ import Service from "../Components/Service";
 import WhyChoose from "../Components/WhyChoose";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import AdminProduct from "./AdminProduct";
-import Scripts from "./Scripts";
 const Home = () => {
   return (
     <>
@@ -34,4 +32,4 @@ const Home = () => {
   );
 };
 
-export default Scripts(Home);
+export default Home;

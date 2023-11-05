@@ -1,46 +1,49 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import NewsLetter from "./Components/NewsLetter";
-import Service from "./Components/Service";
-import Breadcrumb from "./Components/BreadCrumb";
-
-import { AuthHeader } from "./Components/AuthHeader";
-import { AuthForm } from "./Components/AuthForm";
-import { ForgotPasswordForm } from "./Components/ForgotPasswordForm";
-import { ResetForm } from "./Components/ResetForm";
-import { ErrorPage } from "./Components/ErrorPage";
-import { MyAccount } from "./Components/MyAccount";
-import { About } from "./Components/About";
-import { Team } from "./Components/Team";
-import { AboutFeatures } from "./Components/AboutFeatures";
-import { ContactForm } from "./Components/ContactForm";
 import { useEffect, useState } from "react";
 import $ from "jquery";
-import "slick-carousel"; // Import the Slider component from react-slick
-import { Helmet } from "react-helmet";
-import { useRef } from "react";
-import LoadingBar from "react-top-loading-bar";
-import { Audio } from "react-loader-spinner";
-import Home from "./Components/Home";
-import Shop from "./Components/Shop";
-import SingleProductPage from "./Components/SingleProductPage";
-import CartPage from "./Components/CartPage";
-import WishlistPage from "./Components/WishlistPage";
-import CheckOutPage from "./Components/CheckOutPage";
-import PrivacyPolicyPage from "./Components/PrivacyPolicyPage";
-import AboutUs from "./Components/AboutUs";
-import MyAccountPage from "./Components/MyAccountPage";
-import ContactPage from "./Components/ContactPage";
-import AdminProduct from "./Components/AdminProduct";
-import { useHistory } from "react-router";
-import SearchModal from "./Components/SearchModal";
-import Dashboard from "./Components/Dashboard";
-import Signin from "./Components/Signin";
-import Signup from "./Components/Signup";
-import ResetPassword from "./Components/ResetPassword";
-import ForgotPassword from "./Components/ForgotPassword";
+import {
+  ErrorPage,
+  Home,
+  Shop,
+  SingleProductPage,
+  CartPage,
+  WishlistPage,
+  CheckOutPage,
+  PrivacyPolicyPage,
+  AboutUs,
+  MyAccountPage,
+  ContactPage,
+  AdminProduct,
+  SearchModal,
+  Dashboard,
+  Signin,
+  Signup,
+  ResetPassword,
+  ForgotPassword,
+  LoadingBar,
+  axilBackToTop,
+  axilSlickActivation,
+  salActivation,
+  quantityRanger,
+  scrollSmoth,
+  counterUpActivation,
+  onLoadClassAdd,
+  dropdownMenuSlide,
+  axilMasonary,
+  colorVariantActive,
+  headerCampaignRemove,
+  offerPopupActivation,
+  campaignCountdown,
+  sideOffcanvasToggle,
+  magnificPopupActivation,
+  shopFilterWidget,
+  mobileMenuActivation,
+  headerIconToggle,
+  priceRangeSlider,
+  countdownInit,
+  menuLinkActive,
+  initFunction,
+} from "./Components";
 
 function App() {
   const [progress, setProgress] = useState(0);
@@ -54,8 +57,6 @@ function App() {
       script.onload = callback;
       document.head.appendChild(script);
     };
-
-    // List of script sources to load
     const scriptSources = [
       "/assets/js/vendor/modernizr.min.js",
       "/assets/js/vendor/jquery.js",
@@ -74,8 +75,6 @@ function App() {
       "/assets/js/vendor/waypoints.min.js",
       "/assets/js/main.js",
     ];
-
-    // Load each script in sequence
     const loadScripts = (index) => {
       if (index < scriptSources.length) {
         loadScript(scriptSources[index], () => loadScripts(index + 1));
@@ -88,13 +87,13 @@ function App() {
         $(item).slick("unslick");
       });
     });
-    // Start loading scripts
     setProgress(progress + 10);
     setProgress(progress + 20);
     setProgress(progress + 30);
     setProgress(100);
     setTimeout(() => {
       loadScripts(0);
+      // initFunction();
     }, 1500);
 
     return () => {
@@ -106,7 +105,6 @@ function App() {
       });
     };
   }, []);
-
   return (
     <div>
       <LoadingBar
@@ -118,7 +116,6 @@ function App() {
           setLoading(true);
         }}
       />
-      <br />
       {loading && (
         <BrowserRouter>
           <Routes>

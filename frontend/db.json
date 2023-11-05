@@ -677,10 +677,6 @@
       "trendingTitle": "Most Sold"
     },
     {
-      "product_id": 18,
-      "trendingTitle": "Most Sold"
-    },
-    {
       "product_id": 19,
       "trendingTitle": "Most Sold"
     }
@@ -713,6 +709,12 @@
       "password": "@admin",
       "id": 17,
       "role": "User"
+    },
+    {
+      "username": "a",
+      "email": "a",
+      "password": "a",
+      "id": 18
     }
   ],
   "users_data": [
@@ -895,11 +897,27 @@
       "username": "@admin",
       "email": "@admin",
       "user_id": 17,
-      "cart": [],
+      "cart": [
+        {
+          "product_id": 0,
+          "quantity": 2
+        }
+      ],
       "wishlist": [],
       "PendingOrders": [],
       "shippingAddress": [],
       "id": 11
+    },
+    {
+      "signUpDate": "05/11/2023",
+      "username": "a",
+      "email": "a",
+      "user_id": 18,
+      "cart": [],
+      "wishlist": [],
+      "PendingOrders": [],
+      "shippingAddress": [],
+      "id": 12
     }
   ],
   "orders": [
