@@ -37,6 +37,10 @@ import AdminProduct from "./Components/AdminProduct";
 import { useHistory } from "react-router";
 import SearchModal from "./Components/SearchModal";
 import Dashboard from "./Components/Dashboard";
+import Signin from "./Components/Signin";
+import Signup from "./Components/Signup";
+import ResetPassword from "./Components/ResetPassword";
+import ForgotPassword from "./Components/ForgotPassword";
 
 function App() {
   const [progress, setProgress] = useState(0);
@@ -129,64 +133,20 @@ function App() {
             <Route path="/cart.html" element={<CartPage />} />
             <Route path="/wishlist.html" element={<WishlistPage />} />
             <Route path="/checkout.html" element={<CheckOutPage />} />
-            <Route
-              path="/sign-in.html"
-              element={
-                <div className="axil-signin-area">
-                  <AuthHeader page="sign-in" />
-                  <AuthForm isSignIn={true} />
-                </div>
-              }
-            />
-            <Route
-              path="/sign-up.html"
-              element={
-                <div className="axil-signin-area">
-                  <AuthHeader />
-                  <AuthForm />
-                </div>
-              }
-            />
-            <Route
-              path="/reset-password.html"
-              element={
-                <div className="axil-signin-area">
-                  <AuthHeader />
-                  <ResetForm />
-                </div>
-              }
-            />
-            <Route
-              path="/forgot-password.html"
-              element={
-                <div className="axil-signin-area">
-                  <AuthHeader />
-                  <ForgotPasswordForm />
-                </div>
-              }
-            />
+            <Route path="/sign-in.html" element={<Signin />} />
+            <Route path="/sign-up.html" element={<Signup />} />
+            <Route path="/reset-password.html" element={<ResetPassword />} />
+            <Route path="/forgot-password.html" element={<ForgotPassword />} />
             <Route
               path="/privacy-policy.html"
               element={<PrivacyPolicyPage />}
             />
-            <Route
-              path="/error-page.html"
-              element={
-                <div>
-                  <Header />
-
-                  <ErrorPage />
-                  <Footer />
-                </div>
-              }
-            />
+            <Route path="/error-page.html" element={<ErrorPage />} />
             <Route path="/about-us.html" element={<AboutUs />} />
             <Route path="/my-account.html" element={<MyAccountPage />} />
             <Route path="/contact.html" element={<ContactPage />} />
           </Routes>
-
           <SearchModal />
-          {/* <Service /> */}
         </BrowserRouter>
       )}
     </div>

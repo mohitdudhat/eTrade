@@ -928,8 +928,64 @@
   ],
   "categories": [
     {
-      "id": 1,
-      "name": "Electronics"
+      "title": "Phones",
+      "imgSrc": "/assets/images/product/categories/elec-4.png",
+      "id": 1
+    },
+    {
+      "title": "Computers",
+      "imgSrc": "/assets/images/product/categories/elec-5.png",
+      "id": 2
+    },
+    {
+      "title": "Accessories",
+      "imgSrc": "/assets/images/product/categories/elec-11.png",
+      "id": 3
+    },
+    {
+      "title": "Laptops",
+      "imgSrc": "/assets/images/product/categories/elec-6.png",
+      "id": 4
+    },
+    {
+      "title": "Monitors",
+      "imgSrc": "/assets/images/product/categories/elec-2.png",
+      "id": 5
+    },
+    {
+      "title": "Networking",
+      "imgSrc": "/assets/images/product/categories/elec-7.png",
+      "id": 6
+    },
+    {
+      "title": "PC Gaming",
+      "imgSrc": "/assets/images/product/categories/elec-8.png",
+      "id": 7
+    },
+    {
+      "title": "Smartwatches",
+      "imgSrc": "/assets/images/product/categories/elec-1.png",
+      "id": 8
+    },
+    {
+      "title": "Headphones",
+      "imgSrc": "/assets/images/product/categories/elec-9.png",
+      "id": 9
+    },
+    {
+      "title": "Camera & Photo",
+      "imgSrc": "/assets/images/product/categories/elec-10.png",
+      "id": 10
+    },
+    {
+      "title": "Video Games",
+      "imgSrc": "/assets/images/product/categories/elec-8.png",
+      "id": 11
+    },
+    {
+      "title": "Sports",
+      "imgSrc": "/assets/images/product/categories/elec-1.png",
+      "id": 12
     }
   ]
 }

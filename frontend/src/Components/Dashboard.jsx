@@ -31,36 +31,10 @@ const categories = [
     imgSrc: "/assets/images/product/categories/elec-2.png",
     link: "/admin/product",
   },
-  //   {
-  //     title: "Networking",
-  //     imgSrc: "/assets/images/product/categories/elec-7.png",
-  //   },
-  //   {
-  //     title: "PC Gaming",
-  //     imgSrc: "/assets/images/product/categories/elec-8.png",
-  //   },
-  //   {
-  //     title: "Smartwatches",
-  //     imgSrc: "/assets/images/product/categories/elec-1.png",
-  //   },
-  //   {
-  //     title: "Headphones",
-  //     imgSrc: "/assets/images/product/categories/elec-9.png",
-  //   },
-  //   {
-  //     title: "Camera & Photo",
-  //     imgSrc: "/assets/images/product/categories/elec-10.png",
-  //   },
-  //   {
-  //     title: "Video Games",
-  //     imgSrc: "/assets/images/product/categories/elec-8.png",
-  //   },
-  //   {
-  //     title: "Sports",
-  //     imgSrc: "/assets/images/product/categories/elec-1.png",
-  //   },
 ];
 const DashboardFunctions = () => {
+  const [activeFunction, setActiveFunction] = useState(false);
+
   return (
     <div className="axil-categorie-area bg-color-white axil-section-gapcommon">
       <div className="container">
@@ -79,7 +53,10 @@ const DashboardFunctions = () => {
                 data-sal-delay={category.salDelay || 0}
                 data-sal-duration="500"
               >
-                <Link to={category.link}>
+                <Link
+                  to={category.link}
+                  onClick={() => setActiveFunction(category.title)}
+                >
                   <img
                     className="img-fluid"
                     src={category.imgSrc}
@@ -92,6 +69,10 @@ const DashboardFunctions = () => {
           ))}
         </div>
       </div>
+      {activeFunction === "Total Product" && <ProductTable />}
+      {activeFunction === "Total Users" && <Users />}
+      {activeFunction === "Current Admins" && <Admin />}
+      {activeFunction === "Category" && <CategoryAdd />}
     </div>
   );
 };
@@ -304,25 +285,138 @@ const Admin = () => {
 };
 const CategoryAdd = () => {
   const [category, setCategory] = useState("");
-  const addCategory = () => {};
+  const [imgSrc, setImgSrc] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [editId, setEditId] = useState(false);
+  const addCategory = async () => {
+    if (editId) {
+      try {
+        const response = await axios.patch(
+          `http://localhost:3001/categories/${editId}`,
+          {
+            title: category,
+            imgSrc,
+          }
+        );
+        setImgSrc("");
+        setCategory("");
+        setEditId(false);
+        console.log("Category Updated");
+      } catch (error) {
+        console.error("Error Updating the Category:", error);
+      }
+    } else {
+      try {
+        const response = await axios.post(`http://localhost:3001/categories`, {
+          title: category,
+          imgSrc,
+        });
+        setImgSrc("");
+        setCategory("");
+        console.log("Category added");
+      } catch (error) {
+        console.error("Error Updating Role:", error);
+      }
+    }
+    fetchCategories();
+  };
+  const deleteCategory = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/categories/${id}`
+      );
+      setImgSrc("");
+      setCategory("");
+      fetchCategories();
+      console.log("Category Deleted");
+    } catch (error) {
+      console.error("Error Deleting the Category:", error);
+    }
+  };
+  const editCategory = async (id) => {
+    const data = categories.find((c) => c.id === id);
+    console.log(data);
+    setImgSrc(data.imgSrc);
+    setCategory(data.title);
+    setEditId(data.id);
+  };
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/categories`);
+      setCategories(response.data);
+      console.log("Category Fetched");
+    } catch (error) {
+      console.error("Error Fetching the Category:", error);
+    }
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <>
-      <div className="form-group">
-        <label>
-          Old Price<span>*</span>
-        </label>
-        <input
-          type="text"
-          name="category"
-          placeholder="Old Price"
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-        />
-        <button
-          type="submit"
-          className="axil-btn btn-bg-primary w-25 py-3 px-3 mb-4"
-          onClick={() => addCategory()}
-        ></button>
+      <div className="container">
+        <div className="form-group">
+          <label>
+            Category Name<span>*</span>
+          </label>
+          <input
+            type="text"
+            name="category"
+            placeholder="Category Name"
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+          />
+        </div>
+        <div className="form-group">
+          <label>
+            Img Url<span>*</span>
+          </label>
+          <input
+            type="text"
+            name="ImgSrc"
+            placeholder="Img Url"
+            onChange={(e) => setImgSrc(e.target.value)}
+            value={imgSrc}
+          />
+          <button
+            type="submit"
+            className="axil-btn btn-bg-primary w-25 py-3 px-3 mt-4 d-block mx-auto"
+            onClick={() => addCategory()}
+          >
+            {editId ? "Edit Category" : "Add Category"}
+          </button>
+        </div>
+        <h1>Admins</h1>
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Images</th>
+              <th>Category Name</th>
+              <th colSpan={2}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((category) => (
+              <tr key={category.id}>
+                <td>{category.id}</td>
+                <td>{category.imgSrc}</td>
+                <td>{category.title}</td>
+                <td>
+                  <button onClick={() => editCategory(category.id)}>
+                    Edit
+                  </button>{" "}
+                </td>
+                <td>
+                  <button onClick={() => deleteCategory(category.id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
@@ -331,10 +425,6 @@ const Dashboard = () => {
   return (
     <div>
       <DashboardFunctions />
-      {/* <ProductTable /> */}
-      {/* <Users /> */}
-      {/* <Admin /> */}
-      <CategoryAdd />
     </div>
   );
 };
