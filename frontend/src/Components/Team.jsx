@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { salActivation } from ".";
 import $ from "jquery";
 
 const Team = () => {
@@ -37,6 +38,8 @@ const Team = () => {
         },
       ],
     });
+    salActivation();
+
   }, []);
 
   const teamMembers = [

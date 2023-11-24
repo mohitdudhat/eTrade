@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { salActivation } from ".";
+import $ from "jquery";
 const testimonialData = [
   {
     text: "It’s amazing how much easier it has been to meet new people and create instantly non connections. I have the exact same personal; the only thing that has changed is my mindset and a few behaviors.",
@@ -26,6 +28,30 @@ const testimonialData = [
   },
 ];
 const Testimonial = () => {
+  useEffect(()=>{
+    salActivation();
+    $(".testimonial-slick-activation").slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      speed: 500,
+      draggable: true,
+      prevArrow:
+        '<button class="slide-arrow prev-arrow"><i class="fal fa-long-arrow-left"></i></button>',
+      nextArrow:
+        '<button class="slide-arrow next-arrow"><i class="fal fa-long-arrow-right"></i></button>',
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    });
+  },[])
   return (
     <div className="axil-testimoial-area axil-section-gap bg-vista-white">
       <div className="container">

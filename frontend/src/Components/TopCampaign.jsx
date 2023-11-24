@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { headerCampaignRemove } from ".";
 export const TopCampaign = () => {
+  useEffect(() =>{
+    headerCampaignRemove();
+  },[])
   return (
     <div className="header-top-campaign">
       <div className="container position-relative">

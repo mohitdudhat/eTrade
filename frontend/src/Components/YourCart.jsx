@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import $ from "jquery";
+import { quantityRanger } from ".";
 const YourCart = () => {
   const [cartItems, setCartItems] = useState([
     {
@@ -99,6 +100,8 @@ const YourCart = () => {
         console.error("Error fetching data:", error);
       });
     addToCart(productParam);
+    quantityRanger();
+
   }, []);
   const removeItemCart = (product_id) => {
     // Retrieve user_id and user_data

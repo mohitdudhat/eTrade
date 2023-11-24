@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { salActivation } from ".";
+import $ from "jquery";
 const productItems = [
   {
     title: "Roco Wireless Headphone",
@@ -47,6 +49,46 @@ const productItems = [
   },
 ];
 const Banner = () => {
+  useEffect(()=>{
+
+    $(".slider-thumb-activation-one").slick({
+      infinite: true,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true,
+      focusOnSelect: false,
+      speed: 1000,
+      autoplay: false,
+      asNavFor: ".slider-content-activation-one",
+      prevArrow:
+        '<button class="slide-arrow prev-arrow"><i class="fal fa-long-arrow-left"></i></button>',
+      nextArrow:
+        '<button class="slide-arrow next-arrow"><i class="fal fa-long-arrow-right"></i></button>',
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    });
+
+    $(".slider-content-activation-one").slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      focusOnSelect: false,
+      speed: 500,
+      fade: true,
+      autoplay: false,
+      asNavFor: ".slider-thumb-activation-one",
+    });
+    salActivation();
+  },[])
   return (
     <div className="axil-main-slider-area main-slider-style-1">
       <div className="container">

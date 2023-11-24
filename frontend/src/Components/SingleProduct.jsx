@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import WooCommerce from "./WooCommerce";
-import $ from "jquery"; // Import jQuery
+import { colorVariantActive, quantityRanger, salActivation } from ".";
+import $ from "jquery";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -9,8 +10,7 @@ const SingleProduct = () => {
   const largeThumbRef = useRef(null);
   const [productData, setProductData] = useState([]);
   const { id } = useParams();
-
-  useEffect(() => {
+  const fetchProductData = ()=>{
     // Fetch product data
     axios
       .get(`http://localhost:3001/products/${id}`)
@@ -21,6 +21,47 @@ const SingleProduct = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+  }
+  useEffect(() => {
+    fetchProductData();
+    console.log("slick");
+    setTimeout(()=>{
+    $(".product-small-thumb-3").slick({
+      infinite: false,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      focusOnSelect: true,
+      vertical: true,
+      speed: 800,
+      draggable: false,
+      swipe: false,
+      asNavFor: ".product-large-thumbnail-3",
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            vertical: false,
+          },
+        },
+      ],
+    });
+    $(".product-large-thumbnail-3").slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      speed: 800,
+      draggable: false,
+      swipe: false,
+      asNavFor: ".product-small-thumb-3",
+    });},500)
+    salActivation();
+    quantityRanger();
+    colorVariantActive();
+    
   }, []);
 
   return (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { colorVariantActive } from ".";
 const ShopArea = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -79,7 +80,9 @@ const ShopArea = () => {
         console.error("Error fetching data:", error);
       });
   }, [selectedCategory, selectedPriceRange, selectedRating, selectedSort]);
-
+  useEffect(()=>{
+    colorVariantActive();
+  },[])
   return (
     productData && (
       <div className="axil-shop-area axil-section-gap bg-color-white">

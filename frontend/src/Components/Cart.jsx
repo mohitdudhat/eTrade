@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { quantityRanger } from ".";
 
 const cartItems = [
   {
@@ -34,6 +35,9 @@ const cartItems = [
 ];
 
 export const Cart = () => {
+  useEffect(()=>{
+    quantityRanger();
+  },[]);
   return (
     cartItems && (
       <div className="cart-dropdown" id="cart-dropdown">

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { headerIconToggle } from ".";
 
 const supportData = {
   email: "example@domain.com",
@@ -22,6 +23,9 @@ const quickLinks = [
 ];
 
 const Footer = () => {
+  useEffect(()=>{
+    headerIconToggle();
+  },[])
   return (
     <footer className="axil-footer-area footer-style-2">
       <div className="footer-top separator-top">

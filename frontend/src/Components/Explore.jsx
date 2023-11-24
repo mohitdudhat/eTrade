@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { salActivation } from ".";
+import $ from "jquery";
 const Explore = () => {
   const [productData, setProductData] = useState([]);
   const fetchAllProduct = () => {
@@ -8,6 +10,7 @@ const Explore = () => {
       .get(`http://localhost:3001/products`)
       .then((response) => {
         setProductData(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -20,6 +23,18 @@ const Explore = () => {
   }
   useEffect(() => {
     fetchAllProduct();
+    $(".explore-product-activation").slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      prevArrow:
+        '<button class="slide-arrow prev-arrow"><i class="fal fa-long-arrow-left"></i></button>',
+      nextArrow:
+        '<button class="slide-arrow next-arrow"><i class="fal fa-long-arrow-right"></i></button>',
+    });
+    salActivation();
   }, []);
 
   return (

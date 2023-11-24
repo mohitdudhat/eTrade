@@ -1,28 +1,69 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { salActivation } from ".";
+import $ from "jquery";
 const Arrival = () => {
   const [arrivalData, setArrivalData] = useState([]);
   const [productData, setProductData] = useState([]);
   const [filteredProductData, setFilteredProductData] = useState(false);
+  function fetchData(){
+    console.log("arrival fectch running");
+    axios
+    .get(`http://localhost:3001/arrivals`)
+    .then((response) => {
+      setArrivalData(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  axios
+    .get(`http://localhost:3001/products`)
+    .then((response) => {
+      setProductData(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  }
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/arrivals`)
-      .then((response) => {
-        setArrivalData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-    axios
-      .get(`http://localhost:3001/products`)
-      .then((response) => {
-        setProductData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    fetchData();
+    console.log("slick implimentation");
+    setTimeout(()=>$(".new-arrivals-product-activation").slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      arrows: true,
+      dots: false,
+      prevArrow:
+        '<button class="slide-arrow prev-arrow"><i class="fal fa-long-arrow-left"></i></button>',
+      nextArrow:
+        '<button class="slide-arrow next-arrow"><i class="fal fa-long-arrow-right"></i></button>',
+      responsive: [
+        {
+          breakpoint: 1199,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          },
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    }),500);
+    salActivation();
   }, []);
   useEffect(() => {
     if (arrivalData.length > 0 && productData.length > 0) {

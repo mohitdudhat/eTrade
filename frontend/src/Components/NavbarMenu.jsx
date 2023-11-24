@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { headerIconToggle, mobileMenuActivation } from ".";
 
 const NavbarMenu = () => {
+  useEffect(()=>{
+    mobileMenuActivation();
+    headerIconToggle();
+  },[]);
   return (
     <>
       <div id="axil-sticky-placeholder"></div>

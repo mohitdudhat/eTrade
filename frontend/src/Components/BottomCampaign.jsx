@@ -1,6 +1,22 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { salActivation } from ".";
+import $ from "jquery";
 export const BottomCampaign = () => {
+  useEffect(()=>{
+    salActivation();
+    $(".header-campaign-activation").slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      autoplay: true,
+      prevArrow:
+        '<button class="slide-arrow prev-arrow"><i class="fal fa-long-arrow-left"></i></button>',
+      nextArrow:
+        '<button class="slide-arrow next-arrow"><i class="fal fa-long-arrow-right"></i></button>',
+    });
+  },[])
   return (
     <div className="header-top-campaign">
       <div className="container">

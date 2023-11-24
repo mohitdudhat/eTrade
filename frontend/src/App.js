@@ -75,11 +75,11 @@ function App() {
       "/assets/js/vendor/waypoints.min.js",
       "/assets/js/main.js",
     ];
-    const loadScripts = (index) => {
-      if (index < scriptSources.length) {
-        loadScript(scriptSources[index], () => loadScripts(index + 1));
-      }
-    };
+    // const loadScripts = (index) => {
+    //   if (index < scriptSources.length) {
+    //     loadScript(scriptSources[index], () => loadScripts(index + 1));
+    //   }
+    // };
     $(document).on("turbo:before-cache", function () {
       const sliders = document.querySelectorAll(".slick-initialized");
 
@@ -92,7 +92,7 @@ function App() {
     setProgress(progress + 30);
     setProgress(100);
     setTimeout(() => {
-      loadScripts(0);
+      // loadScripts(0);
       // initFunction();
     }, 1500);
 
